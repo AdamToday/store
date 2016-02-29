@@ -22,7 +22,7 @@ var schema = new mongoose.Schema({
     },
     paymentInfo: {
         type: Schema.Types.ObjectId,
-         ref: 'PaymentInfo'
+         ref: 'BillingInfo'
     },
     cart: [{ type: Schema.Types.ObjectId,
         ref: 'shoppingCart'}],
