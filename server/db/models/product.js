@@ -6,7 +6,7 @@ var extend = require('mongoose-schema-extend');
 var ProductSchema = new mongoose.Schema({
     name: {type: String, required: true},
     description: {type: String, required: true},
-    ingrdients: {type: String, required: true}
+    ingredients: {type: String, required: true}
     picture: {type: String},
     flavor: {type: String},
     price: {type: Number, required: true},
