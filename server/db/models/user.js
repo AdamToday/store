@@ -7,6 +7,28 @@ var schema = new mongoose.Schema({
     email: {
         type: String
     },
+    firstName: {
+        type: String
+    },
+    lastName: {
+        type: String 
+    },
+    isAdmin {
+        type: Boolean
+    },
+    contactInfo:{
+        type: Schema.Types.ObjectId, 
+        ref: 'ContactInfo'
+    },
+    paymentInfo: {
+        type: Schema.Types.ObjectId,
+         ref: 'PaymentInfo'
+    },
+    cart: [{ type: Schema.Types.ObjectId,
+        ref: 'shoppingCart'}],
+    pastOrders: [{  type: Schema.Types.ObjectId,
+        ref: 'PastOrders'
+    }],
     password: {
         type: String
     },
