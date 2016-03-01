@@ -103,7 +103,7 @@ describe('User model', function () {
             var saltSpy;
 
             var createUser = function () {
-                return User.create({ email: 'obama@gmail.com', password: 'potus' });
+                return User.create({ email: 'obama@gmail.com', fistName: 'Barak', lastName: 'Obama', isAdmin: false, password: 'potus' });
             };
 
             beforeEach(function () {
@@ -114,6 +114,17 @@ describe('User model', function () {
             afterEach(function () {
                 encryptSpy.restore();
                 saltSpy.restore();
+            });
+
+            it('should set user.email, user.firstName, user.lastName, user.isAdmin', function (done) {
+               createUser().then(function (user) {
+                   expect(user.email).to.be.equal('obama@gmail.com');
+                   expect(user.firstName).to.be.equal('Barak');
+                   expect(user.lastName).to.be.equal('Obama');
+                   expect(user.isAdmin).to.be.equal(false);
+
+                   done();
+               });
             });
 
             it('should call User.encryptPassword with the given password and generated salt', function (done) {
@@ -145,7 +156,7 @@ describe('User model', function () {
         describe('sanitize method', function () {
 
             var createUser = function () {
-                return User.create({ email: 'obama@gmail.com', password: 'potus' });
+                return User.create({ email: 'obama@gmail.com', fistName: 'Barak', lastName: 'Obama', isAdmin: false, password: 'potus' });
             };
 
             it('should remove sensitive information from a user object', function () {
