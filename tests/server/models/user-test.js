@@ -103,7 +103,7 @@ describe('User model', function () {
             var saltSpy;
 
             var createUser = function () {
-                return User.create({ email: 'obama@gmail.com', fistName: 'Barak', lastName: 'Obama', isAdmin: false, password: 'potus' });
+                return User.create({ email: 'obama@gmail.com', firstName: 'Barak', lastName: 'Obama', isAdmin: false, password: 'potus' });
             };
 
             beforeEach(function () {
@@ -122,7 +122,6 @@ describe('User model', function () {
                    expect(user.firstName).to.be.equal('Barak');
                    expect(user.lastName).to.be.equal('Obama');
                    expect(user.isAdmin).to.be.equal(false);
-
                    done();
                });
             });
