@@ -4,9 +4,9 @@
   "description": "A generated project at Fullstack Academy",
   "main": "server/start.js",
   "scripts": {
-    "start": "nodemon --watch server -e js,html server/start.js",
+    "start": "nodemon --watch server -e js,html server/start.js --harmony-proxies",
     "postinstall": "gulp build",
-    "test": "NODE_ENV=testing mocha ./tests/server/models/product-test.js --reporter=nyan"
+    "test": "NODE_ENV=testing mocha ./tests/server/models/product-test.js --reporter=nyan --harmony-proxies"
   },
   "engines": {
     "node": ">=4.0.0"

@@ -17,7 +17,7 @@ ShoppingCartSchema.virtual('subtotal').set(function() {
 
 mongoose.model('ShoppingCart', ShoppingCartSchema);
 
-var PastOrderSchema = ShoppingCart.extend({
+var PastOrderSchema = ShoppingCartSchema.extend({
   date: { 
     type: Date,
     default: Date.now
