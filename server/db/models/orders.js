@@ -1,18 +1,21 @@
 'use strict';
 var mongoose = require('mongoose');
 var extend = require('mongoose-schema-extend');
+var Schema = mongoose.Schema;
 
-var ShoppingCartSchema = new mongoose.Schema({
+var ShoppingCartSchema = new Schema({
   items: [{type: Schema.Types.ObjectId, ref: 'CartItem'}]
 });
 
-ShoppingCartSchema.virtual('subtotal') {
+ShoppingCartSchema.virtual('subtotal').set(function() {
   var total = 0;
   this.items.forEach(function (item) {
     total += item.price;
   });
   return total;
-};
+});
+
+mongoose.model('ShoppingCart', ShoppingCartSchema);
 
 var PastOrderSchema = ShoppingCart.extend({
   date: { 
@@ -21,4 +24,4 @@ var PastOrderSchema = ShoppingCart.extend({
   }
 });
 
-mongoose.model('ShoppingCart', ProductSchema);
+mongoose.model('PastOrder', PastOrderSchema);

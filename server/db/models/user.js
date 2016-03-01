@@ -2,8 +2,9 @@
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 var _ = require('lodash');
+var Schema = mongoose.Schema;
 
-var schema = new mongoose.Schema({
+var schema = new Schema({
     email: {
         type: String
     },
@@ -13,10 +14,10 @@ var schema = new mongoose.Schema({
     lastName: {
         type: String 
     },
-    isAdmin {
+    isAdmin: {
         type: Boolean
     },
-    contactInfo:{
+    contactInfo: {
         type: Schema.Types.ObjectId, 
         ref: 'ContactInfo'
     },
