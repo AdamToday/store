@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --watch server -e js,html server/start.js --harmony-proxies",
     "postinstall": "gulp build",
-    "test": "NODE_ENV=testing mocha ./tests/server/models/product-test.js --reporter=nyan --harmony-proxies"
+    "test": "NODE_ENV=testing mocha ./tests/server/models/*.js --reporter=nyan --harmony-proxies"
   },
   "engines": {
     "node": ">=4.0.0"
