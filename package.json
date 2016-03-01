@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --watch server -e js,html server/start.js",
     "postinstall": "gulp build",
-    "test": "NODE_ENV=testing mocha --reporter=nyan"
+    "test": "NODE_ENV=testing mocha ./tests/server/models/product-test.js --reporter=nyan"
   },
   "engines": {
     "node": ">=4.0.0"
@@ -65,5 +65,10 @@
     "socket.io": "^1.3.4",
     "socket.io-client": "^1.3.5",
     "supertest": "^0.15.0"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "nodemon": "^1.8.1"
   }
 }

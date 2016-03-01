@@ -1,8 +1,10 @@
 'use strict';
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
 // var extend = require('mongoose-schema-extend');
 
-var ContactInfoSchema = new mongoose.Schema({
+var ContactInfoSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
          ref: 'User'
@@ -12,7 +14,7 @@ var ContactInfoSchema = new mongoose.Schema({
 });
 
 //we want to be able to store different phone numbers and addresses for billing versus shipping
-var BillingInfoSchema = new mongoose.Schema({
+var BillingInfoSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
          ref: 'User'
