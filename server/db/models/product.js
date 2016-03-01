@@ -10,7 +10,8 @@ var ProductSchema = new mongoose.Schema({
     picture: {type: String},
     flavor: {type: String},
     price: {type: Number, required: true},
-    stockAmount: {type: Number, required: true}
+    stockAmount: {type: Number, required: true},
+    reviews: [{ type: Schema.Types.ObjectId, ref: 'Review'}]
 });
 
 var ChocolateBarSchema = Product.extend({
