@@ -2,7 +2,6 @@
 var mongoose = require('mongoose');
 var extend = require('mongoose-schema-extend');
 
-
 var ProductSchema = new mongoose.Schema({
     name: {type: String, required: true},
     type: {type: String, enum: ["Drinking", "Bar", "Assorted"]},
