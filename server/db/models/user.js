@@ -6,7 +6,9 @@ var Schema = mongoose.Schema;
 
 var schema = new Schema({
     email: {
-        type: String
+        type: String,
+        unique: true,
+        required: true 
     },
     firstName: {
         type: String
@@ -15,7 +17,8 @@ var schema = new Schema({
         type: String 
     },
     isAdmin: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     contactInfo: {
         type: Schema.Types.ObjectId, 
