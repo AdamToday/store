@@ -4,3 +4,6 @@
 require('./user');
 require('./product');
 require('./contactInfo');
+require('./cartItem');
+require('./orders');
+require('./review');

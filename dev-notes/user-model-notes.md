@@ -44,7 +44,7 @@ Past Orders *** must belong to a user OR guest session (authenticated vs unauthe
   user or session id
   order items [{order item ref}]
   date
-  status: shipped? not shipped?
+<!--   status: shipped? not shipped? -->
 ***virtual or method?: change product's stockAmt here
 ***virtual: total amount?
 
