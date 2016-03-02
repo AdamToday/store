@@ -4,8 +4,6 @@ var clearDB = require('mocha-mongoose')(dbURI);
 var sinon = require('sinon');
 var chai = require('chai');
 var expect = chai.expect;
-var chaiAsPromised = require('chai-as-promised');
-chai.use(chaiAsPromised);
 var mongoose = require('mongoose');
 
 var Promise = require('bluebird'); 
@@ -84,8 +82,8 @@ describe('Review model', function () {
                 createProduct(), 
             ])
             .spread(function(_user, _product){
-                user = _user._id; 
-                product = _product._id; 
+                user = _user; 
+                product = _product; 
                 done();
             })
             .catch(done);
@@ -94,7 +92,7 @@ describe('Review model', function () {
         
 
         beforeEach(function(done){
-            createReview(user, product)
+            createReview(user._id, product._id)
             .then(function(_review){
                 review = _review; 
                 done();
@@ -116,19 +114,23 @@ describe('Review model', function () {
         });
 
         it('findByAuthor', function(){
-                return Review.findByAuthor(user._id).should.eventually.have.length(1);
+            return Review.findByAuthor(user._id).then(function(reviews){ expect(reviews).to.have.length(1);
+            });
         });
 
         it('does not get reviews without an author', function () {
-            return Review.findByAuthor('507f1f77bcf86cd799439011').should.eventually.have.length(0);
+            return Review.findByAuthor('507f1f77bcf86cd799439011').then(function(reviews){ expect(reviews).to.have.length(0);
+            });
         });
 
         it('findByProduct', function(){
-                return Review.findByProduct(product._id).should.eventually.have.length(1);
+                return Review.findByProduct(product._id).then(function(reviews){ expect(reviews).to.have.length(1);
+                });
         });
 
         it('does not get reviews without a product', function () {
-            return Review.findByProduct('507f1f77bcf86cd799439011').should.eventually.have.length(0);
+            return Review.findByProduct('507f1f77bcf86cd799439011').then(function(reviews){ expect(reviews).to.have.length(0);
+            });
         });
 
 
