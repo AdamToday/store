@@ -24,11 +24,12 @@ router.get('/:userId', function(req, res, next) {
 });
 
 router.get('/:userId/:id', function(req, res, next) {
-	Order.find(req.params.id)
+	Order.getAllItems(req.params.id)
 	.then(function(response){
-		res.json(response);
-	})
+    	res.json(response);
+    })
 	.then(null, next);
+
 });
 
 //post new Order

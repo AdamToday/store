@@ -34,8 +34,9 @@ OrderSchema.statics.findByUser = function(userId, cb){
   });
 };
 
-OrderSchema.methods.getAllItems = function(orderId, cb){
-  return this.parent.findById(this._id)
+OrderSchema.statics.getAllItems = function(orderId, cb){
+
+  return this.findById(orderId)
   .deepPopulate('item items.item')
   .then(function(allItems){
     if (cb) cb(null, allItems);
