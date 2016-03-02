@@ -12,8 +12,7 @@ var ProductSchema = new Schema({
     picture: {type: String},
     flavor: {type: String},
     price: {type: Number, required: true},
-    stockAmount: {type: Number, required: true},
-    reviews: [{ type: Schema.Types.ObjectId, ref: 'Review'}]
+    stockAmount: {type: Number, required: true}
 });
 
 // var ChocolateBarSchema = Product.extend({
