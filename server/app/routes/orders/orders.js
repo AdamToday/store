@@ -33,5 +33,20 @@ router.get('/:userId/:id', function(req, res, next) {
 
 //post new Order
 router.post('/', function(req, res, next) {
-	
-})
+	Order.create(req.body)
+	.then(function(response) {
+		res.json(response);
+	})
+	.then(null, next);
+});
+
+router.post('/:id/item', function(req, res, next) {
+	Order.findById(req.params.id)
+	.then(function(oneCart) {
+		return oneCart.addItem(req.body);
+	})
+	.then(function(response) {
+		res.json(response);
+	})
+	.then(null, next);
+});
