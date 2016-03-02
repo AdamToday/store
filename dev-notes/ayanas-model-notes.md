@@ -25,3 +25,8 @@
       zip 
       coordinates"
 
+## methods to add to models
+* Orders
+  * getOrderByUser
+  * get all items in order
+    * deep populate
