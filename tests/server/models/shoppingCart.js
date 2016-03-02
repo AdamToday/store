@@ -49,60 +49,22 @@ describe('ShoppingCart model', function () {
 
         });
 
-        it('has the correct number of references', function (done) {
+        it('has the correct number of references', function () {
 
             return ShoppingCart.findOne({})
             .then(function(oneCart) {
-                console.log("this is onecart", oneCart.items.length);
-                expect(oneCart.items).to.have.lengthOf(6);
-            })
-            .then(done);
+                expect(oneCart.items).to.have.lengthOf(1);
+            });
         });
 
-        it('has a reference to the right cartItem', function (done) {
+        it('has a reference to the right cartItem', function () {
             return ShoppingCart.findOne({})
-            .populate('items', 'items.item')
+            .deepPopulate('item items.item')
             .then(function(oneCart) {
-                console.log("this is cart", oneCart.items.item.name)
-                expect(oneCart.items.item.name).to.be("Fake Product");
-            })
-            .then(done)
+                console.log("this is cart", oneCart.items[0].item.name);
+                expect(oneCart.items[0].item.name).to.be.string("Fake Product");
+            });
         });
-
-        // it('errors without size', function (done) {
-        //     product.validate(function (err) {
-        //         expect(err.errors.size).to.be.an('object');
-        //         done();
-        //     });
-        // });
-
-        // it('errors without description', function (done) {
-        //     product.validate(function (err) {
-        //         expect(err.errors.description).to.be.an('object');
-        //         done();
-        //     });
-        // });
-
-        // it('errors without ingredients', function (done) {
-        //     product.validate(function (err) {
-        //         expect(err.errors.ingredients).to.be.an('object');
-        //         done();
-        //     });
-        // });
-
-        // it('errors without price', function (done) {
-        //     product.validate(function (err) {
-        //         expect(err.errors.price).to.be.an('object');
-        //         done();
-        //     });
-        // });
-
-        // it('errors without stockAmount', function (done) {
-        //     product.validate(function (err) {
-        //         expect(err.errors.stockAmount).to.be.an('object');
-        //         done();
-        //     });
-        // });
 
     });
 });
