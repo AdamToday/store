@@ -9,12 +9,12 @@ var mongoose = require('mongoose');
 // Require in all models.
 require('../../../server/db/models');
 
-var ShoppingCart = mongoose.model('ShoppingCart');
+var Order = mongoose.model('Order');
 var Product = mongoose.model('Product');
 var CartItem = mongoose.model('CartItem');
 
 
-describe('ShoppingCart model', function () {
+describe('Order model', function () {
 
     beforeEach('Establish DB connection', function (done) {
         if (mongoose.connection.db) return done();
@@ -26,7 +26,7 @@ describe('ShoppingCart model', function () {
     });
 
     it('should exist', function () {
-        expect(ShoppingCart).to.be.a('function');
+        expect(Order).to.be.a('function');
     });
 
     describe('Model reference', function () {
@@ -41,7 +41,7 @@ describe('ShoppingCart model', function () {
             })
             .then(function(newCartItem) {
                 cartItem = newCartItem;
-                return ShoppingCart.create({items: [cartItem._id]});
+                return Order.create({items: [cartItem._id]});
             })
             .then(function(newCart) {
                 cart = newCart;
@@ -49,16 +49,15 @@ describe('ShoppingCart model', function () {
 
         });
 
-        it('has the correct number of references', function () {
-
-            return ShoppingCart.findOne({})
+        it('has the correct number of item references', function () {
+            return Order.findOne({})
             .then(function(oneCart) {
                 expect(oneCart.items).to.have.lengthOf(1);
             });
         });
 
         it('has a reference to the right cartItem', function () {
-            return ShoppingCart.findOne({})
+            return Order.findOne({})
             .deepPopulate('item items.item')
             .then(function(oneCart) {
                 console.log("this is cart", oneCart.items[0].item.name);
