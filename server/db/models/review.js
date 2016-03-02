@@ -10,4 +10,23 @@ var ReviewSchema = new Schema({
     rating: {type: Number, enum: [1,2,3,4,5], required: true}
 });
 
+
+ReviewSchema.statics.findByAuthor = function(authorId, cb){
+	return this.find({author: authorId})
+	.then(function(reviewsByAuthor){
+		if (cb) cb(null, reviewsByAuthor);
+		return reviewsByAuthor;
+	});
+};
+
+ReviewSchema.statics.findByProduct = function(productId, cb){
+	return this.find({product: productId})
+	.then(function(reviewsByProduct){
+		if (cb) cb(null, reviewsByProduct);
+		return reviewsByProduct;
+	});
+};
+
+
+
 mongoose.model('Review', ReviewSchema);
