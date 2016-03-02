@@ -1,8 +1,17 @@
 'use strict';
 var path = require('path');
 var express = require('express');
+var mongoose = require('mongoose');
 var app = express();
 module.exports = app;
+
+// var models = require('../db/models/index.js');
+var User = mongoose.model('User');
+var CartItem = mongoose.model('CartItem');
+var Order = mongoose.model('Order');
+var Review = mongoose.model('Review');
+
+
 
 // Pass our express application pipeline into the configuration
 // function located at server/app/configure/index.js
@@ -10,8 +19,8 @@ require('./configure')(app);
 
 // Routes that will be accessed via AJAX should be prepended with
 // /api so they are isolated from our GET /* wildcard.
+app.use('/api/products', require('./routes/products/products.js'));
 app.use('/api', require('./routes'));
-
 
 /*
  This middleware will catch any URLs resembling a file extension
