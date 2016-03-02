@@ -11,6 +11,7 @@ require('../../../server/db/models');
 
 var Review = mongoose.model('Review');
 var User = mongoose.model('User');
+var Product = mongoose.model('Product');
 
 describe('Review model', function () {
 
@@ -35,7 +36,7 @@ describe('Review model', function () {
         
         it('errors without user', function (done) {
             review.validate(function (err) {
-                expect(err.errors.user).to.be.an('object');
+                expect(err.errors.author).to.be.an('object');
                 done();
             });
         });
@@ -57,40 +58,46 @@ describe('Review model', function () {
 
     describe('on creation', function () {
         var user;
+        var product;
         var review; 
 
         var createUser = function () {
                 return User.create({email: 'obama@gmail.com', firstName: 'Barak', lastName: 'Obama', isAdmin: false, password: 'potus' });
             };
-        var createReview = function(userId) {
-            return Review.create({user: userId, title: 'I love their chocolate', comments:'I love their chocolate, Michelle and I serve it to all our guests!', rating: 5 });
+        var createReview = function(userId, productId) {
+            return Review.create({author: userId, product: productId,title: 'I love their chocolate', comments:'I love their chocolate, Michelle and I serve it to all our guests!', rating: 5 });
         };
+        var createProduct = function() {
+            return Product.create({ name: "85% Dark Venezuelan Chocolate", type: "Bar", size: 12, description: "Rich, luxurious and complicated. This single origin bar exudes confidence and notes of sophistication.", ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", price: 8.00, stockAmount: 37});
+        }
         
         beforeEach('create new user and review', function (done){
 
             createUser().then(function(newuser){
                 user = newuser;
-                createReview(user._id)
-                .then(
-                    function(newreview){
-                        review = newreview;
-                        done();
-                    });
-                })
-                
-         });
+                return createProduct();
+            }).then(function(newproduct){
+                product = newproduct;
+                return createReview(user._id, product._id);
+            }).then(
+                function(newreview){
+                    review = newreview;
+                    done();
+            });
+        });
         
       
-        it('review.user should be user._id', function (done) {
-            expect(review.user).to.be.equal(user._id);
+        it('review to have a user id, a product id, title, comments and a rating', function (done) {
+            expect(review.author).to.be.equal(user._id);
+            expect(review.product).to.be.equal(product._id);
+            expect(review.title).to.be.equal('I love their chocolate');
+            expect(review.comments).to.be.equal('I love their chocolate, Michelle and I serve it to all our guests!');
+            expect(review.rating).to.be.a('number');
+            expect(review.rating).to.be.at.least(1);
+            expect(review.rating).to.be.below(6);
             done();
         });
 
-        it('properties of review should be  ', function (done) {
-            expect(review.title).to.be.equal('I love their chocolate');
-            done();
-        });
-      
     }); 
 
 });
