@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var extend = require('mongoose-schema-extend');
 var Schema = mongoose.Schema;
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
+var CartItem = mongoose.model('CartItem');
+
 
 var OrderSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -32,12 +34,26 @@ OrderSchema.statics.findByUser = function(userId, cb){
   });
 };
 
-OrderSchema.statics.getAllItems = function(userId, cb){
-  return this.find({user: userId})
+OrderSchema.methods.getAllItems = function(orderId, cb){
+  return this.parent.findById(this._id)
   .deepPopulate('item items.item')
   .then(function(allItems){
     if (cb) cb(null, allItems);
     return allItems;
+  });
+};
+
+OrderSchema.methods.addItem = function(itemData) {
+  var order = this;
+  var newItem;
+  return CartItem.create(itemData)
+  .then(function(_newItem) {
+    newItem = _newItem;
+    order.items.push(newItem._id);
+    return order.save();
+  })
+  .then(function() {
+    return newItem;
   });
 };
 
