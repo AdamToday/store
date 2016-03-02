@@ -56,29 +56,39 @@ describe('Review model', function () {
     });
 
     describe('on creation', function () {
-         var user, review; 
+        var user;
+        var review; 
 
-         var createUser = function () {
+        var createUser = function () {
                 return User.create({email: 'obama@gmail.com', firstName: 'Barak', lastName: 'Obama', isAdmin: false, password: 'potus' });
             };
         var createReview = function(userId) {
             return Review.create({user: userId, title: 'I love their chocolate', comments:'I love their chocolate, Michelle and I serve it to all our guests!', rating: 5 });
         };
         
-        beforeEach('create new user and review', function(){
-            createUser().then(function(user){
-                user = user;
-                review = createReview(user._id);
-            });
-             
-        });
+        beforeEach('create new user and review', function (done){
 
+            createUser().then(function(newuser){
+                user = newuser;
+                createReview(user._id)
+                .then(
+                    function(newreview){
+                        review = newreview;
+                        done();
+                    });
+                })
+                
+         });
+        
+      
         it('review.user should be user._id', function (done) {
             expect(review.user).to.be.equal(user._id);
+            done();
         });
 
         it('properties of review should be  ', function (done) {
             expect(review.title).to.be.equal('I love their chocolate');
+            done();
         });
       
     }); 
