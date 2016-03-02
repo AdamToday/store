@@ -15,19 +15,4 @@ var ProductSchema = new Schema({
     stockAmount: {type: Number, required: true}
 });
 
-// var ChocolateBarSchema = Product.extend({
-//     weight: {type: Number}
-// })
-
-// var DrinkingChocolateSchema = Product.extend({
-//     weight: {type: Number}
-// })
-
-// var AssortedChocolateSchema = Product.extend({
-//     pieces: {type: Number}
-// })
-
 mongoose.model('Product', ProductSchema);
-// mongoose.model('ChocolateBar', ChocolateBarSchema);
-// mongoose.model('DrinkingChocolate', DrinkingChocolateSchema);
-// mongoose.model('AssortedChocolate', AssortedChocolateSchema);
