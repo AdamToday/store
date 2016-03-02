@@ -5,6 +5,8 @@ var sinon = require('sinon');
 var expect = require('chai').expect;
 var mongoose = require('mongoose');
 
+var Promise = require('bluebird'); 
+
 
 // Require in all models.
 require('../../../server/db/models');
@@ -62,30 +64,59 @@ describe('Review model', function () {
         var review; 
 
         var createUser = function () {
-                return User.create({email: 'obama@gmail.com', firstName: 'Barak', lastName: 'Obama', isAdmin: false, password: 'potus' });
-            };
+            return User.create({email: 'obama@gmail.com', firstName: 'Barak', lastName: 'Obama', isAdmin: false, password: 'potus' });
+        };
+
         var createReview = function(userId, productId) {
             return Review.create({author: userId, product: productId,title: 'I love their chocolate', comments:'I love their chocolate, Michelle and I serve it to all our guests!', rating: 5 });
         };
+
         var createProduct = function() {
             return Product.create({ name: "85% Dark Venezuelan Chocolate", type: "Bar", size: 12, description: "Rich, luxurious and complicated. This single origin bar exudes confidence and notes of sophistication.", ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", price: 8.00, stockAmount: 37});
-        }
+        };
         
-        beforeEach('create new user and review', function (done){
+        // beforeEach('create new user and review', function (done){
 
-            createUser().then(function(newuser){
-                user = newuser;
-                return createProduct();
-            }).then(function(newproduct){
-                product = newproduct;
-                return createReview(user._id, product._id);
-            }).then(
-                function(newreview){
-                    review = newreview;
-                    done();
-            });
-        });
+        //     createUser().then(function(newuser){
+        //         user = newuser;
+        //         return createProduct();
+        //     }).then(function(newproduct){
+        //         product = newproduct;
+        //         return createReview(user._id, product._id);
+        //     }).then(
+        //         function(newreview){
+        //             review = newreview;
+        //             done();
+        //     });
+        // });
+
+        beforeEach(function(done){
+            Promise.all([
+                createUser(), 
+                createProduct(), 
+            ])
+            .spread(function(_user, _product){
+                user = _user; 
+                product = _product; 
+                done()
+            })
+            .catch(done)
+        })
+
+        beforeEach(function(done){
+            createReview(user, product)
+            .then(function(_review){
+                review = _review; 
+                done()
+            })
+            .then(null, done)
+        })
+
+
+
         
+
+        // afterEach should be here 
       
         it('review to have a user id, a product id, title, comments and a rating', function (done) {
             expect(review.author).to.be.equal(user._id);
