@@ -21,18 +21,24 @@ var schema = new Schema({
         default: false
     },
     contactInfo: {
-        type: Schema.Types.ObjectId, 
-        ref: 'ContactInfo'
+        phone: String,
+        addressStreet1: String,
+        addressStreet2: String,
+        addressCity: String,
+        addressState: String,
+        addressZip: Number
     },
     paymentInfo: {
-        type: Schema.Types.ObjectId,
-         ref: 'BillingInfo'
+        phone: String,
+        addressStreet1: String,
+        addressStreet2: String,
+        addressCity: String,
+        addressState: String,
+        addressZip: Number,
+        ccNo: String,
+        ccExpirationMo: {type: String, enum: ['01','02','03','04','05','06','07','08','09', '10', '11','12']},
+        ccCCV: Number
     },
-    cart: [{ type: Schema.Types.ObjectId,
-        ref: 'shoppingCart'}],
-    pastOrders: [{  type: Schema.Types.ObjectId,
-        ref: 'PastOrders'
-    }],
     password: {
         type: String
     },
