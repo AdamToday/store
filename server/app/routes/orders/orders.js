@@ -15,10 +15,23 @@ router.get('/', function(req, res, next) {
 });
 
 //get one
-router.get('/:id', function(req, res, next) {
-	Order.findById(req.params.id)
+router.get('/:userId', function(req, res, next) {
+	Order.findByUser(req.params.userId)
 	.then(function(response){
 		res.json(response);
 	})
 	.then(null, next);
 });
+
+router.get('/:userId/:id', function(req, res, next) {
+	Order.find(req.params.id)
+	.then(function(response){
+		res.json(response);
+	})
+	.then(null, next);
+});
+
+//post new Order
+router.post('/', function(req, res, next) {
+	
+})

@@ -24,4 +24,21 @@ OrderSchema.virtual('subtotal').set(function() {
   return total;
 });
 
+OrderSchema.statics.findByUser = function(userId, cb){
+  return this.find({user: userId})
+  .then(function(ordersByUser){
+    if (cb) cb(null, ordersByUser);
+    return ordersByUser;
+  });
+};
+
+OrderSchema.statics.getAllItems = function(userId, cb){
+  return this.find({user: userId})
+  .deepPopulate('item items.item')
+  .then(function(allItems){
+    if (cb) cb(null, allItems);
+    return allItems;
+  });
+};
+
 mongoose.model('Order', OrderSchema);
