@@ -18,6 +18,10 @@
   * validate on front end and in our routes
 
 ## user
-* address: store as one long string, this is Google's convention:
-      `street state city zip coordinates"
+* address: this is Google's convention:
+      "street 
+      state 
+      city 
+      zip 
+      coordinates"
 

@@ -4,13 +4,19 @@ var extend = require('mongoose-schema-extend');
 var Schema = mongoose.Schema;
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
-var ShoppingCartSchema = new Schema({
-  items: [{type: Schema.Types.ObjectId, ref: 'CartItem'}]
+var OrderSchema = new Schema({
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  items: [{ type: Schema.Types.ObjectId, ref: 'CartItem'} ],
+  date: { 
+    type: Date,
+    default: Date.now
+  },
+  status: { type: String, enum: ["inProgress", "complete"], default: "inProgress" }
 });
 
-ShoppingCartSchema.plugin(deepPopulate);
+OrderSchema.plugin(deepPopulate);
 
-ShoppingCartSchema.virtual('subtotal').set(function() {
+OrderSchema.virtual('subtotal').set(function() {
   var total = 0;
   this.items.forEach(function (item) {
     total += item.price;
@@ -18,13 +24,4 @@ ShoppingCartSchema.virtual('subtotal').set(function() {
   return total;
 });
 
-mongoose.model('ShoppingCart', ShoppingCartSchema);
-
-var PastOrderSchema = ShoppingCartSchema.extend({
-  date: { 
-    type: Date,
-    default: Date.now
-  }
-});
-
-mongoose.model('PastOrder', PastOrderSchema);
+mongoose.model('Order', OrderSchema);
