@@ -2,7 +2,10 @@ var dbURI = 'mongodb://localhost:27017/testingDB';
 var clearDB = require('mocha-mongoose')(dbURI);
 
 var sinon = require('sinon');
-var expect = require('chai').expect;
+var chai = require('chai');
+var expect = chai.expect;
+var chaiAsPromised = require('chai-as-promised');
+chai.use(chaiAsPromised);
 var mongoose = require('mongoose');
 
 var Promise = require('bluebird'); 
@@ -75,48 +78,31 @@ describe('Review model', function () {
             return Product.create({ name: "85% Dark Venezuelan Chocolate", type: "Bar", size: 12, description: "Rich, luxurious and complicated. This single origin bar exudes confidence and notes of sophistication.", ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", price: 8.00, stockAmount: 37});
         };
         
-        // beforeEach('create new user and review', function (done){
-
-        //     createUser().then(function(newuser){
-        //         user = newuser;
-        //         return createProduct();
-        //     }).then(function(newproduct){
-        //         product = newproduct;
-        //         return createReview(user._id, product._id);
-        //     }).then(
-        //         function(newreview){
-        //             review = newreview;
-        //             done();
-        //     });
-        // });
-
         beforeEach(function(done){
             Promise.all([
                 createUser(), 
                 createProduct(), 
             ])
             .spread(function(_user, _product){
-                user = _user; 
-                product = _product; 
-                done()
+                user = _user._id; 
+                product = _product._id; 
+                done();
             })
-            .catch(done)
-        })
+            .catch(done);
+        });
+
+        
 
         beforeEach(function(done){
             createReview(user, product)
             .then(function(_review){
                 review = _review; 
-                done()
+                done();
             })
-            .then(null, done)
-        })
-
-
+            .then(null, done);
+        });
 
         
-
-        // afterEach should be here 
       
         it('review to have a user id, a product id, title, comments and a rating', function (done) {
             expect(review.author).to.be.equal(user._id);
@@ -128,6 +114,23 @@ describe('Review model', function () {
             expect(review.rating).to.be.below(6);
             done();
         });
+
+        it('findByAuthor', function(){
+                return Review.findByAuthor(user._id).should.eventually.have.length(1);
+        });
+
+        it('does not get reviews without an author', function () {
+            return Review.findByAuthor('507f1f77bcf86cd799439011').should.eventually.have.length(0);
+        });
+
+        it('findByProduct', function(){
+                return Review.findByProduct(product._id).should.eventually.have.length(1);
+        });
+
+        it('does not get reviews without a product', function () {
+            return Review.findByProduct('507f1f77bcf86cd799439011').should.eventually.have.length(0);
+        });
+
 
     }); 
 

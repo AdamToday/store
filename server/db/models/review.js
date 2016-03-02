@@ -19,8 +19,12 @@ ReviewSchema.statics.findByAuthor = function(authorId, cb){
 	});
 };
 
-ReviewSchema.statics.findByProduct = function(){
-
+ReviewSchema.statics.findByProduct = function(productId, cb){
+	return this.find({product: productId})
+	.then(function(reviewsByProduct){
+		if (cb) cb(null, reviewsByProduct);
+		return reviewsByProduct;
+	});
 };
 
 
