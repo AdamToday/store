@@ -23,3 +23,5 @@ router.get('/:id', function(req, res, next) {
 	.then(null, next);
 });
 
+//update user info?
+//put route?
