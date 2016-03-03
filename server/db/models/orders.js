@@ -26,16 +26,23 @@ OrderSchema.virtual('subtotal').set(function() {
   return total;
 });
 
-OrderSchema.statics.findByUser = function(userId, cb){
-  return this.find({user: userId})
+OrderSchema.statics.findByUser = function(userId, _status, cb){
+  return this.find({user: userId, status: _status})
   .then(function(ordersByUser){
     if (cb) cb(null, ordersByUser);
     return ordersByUser;
   });
 };
 
-OrderSchema.statics.getAllItems = function(orderId, cb){
+OrderSchema.statics.getPastOrder = function(userId, cb){
+  return this.find({user: userId, status: "complete"})
+  .then(function(pastOrdersByUser){
+    if (cb) cb(null, pastOrdersByUser);
+    return pastOrdersByUser;
+  });
+};
 
+OrderSchema.statics.getAllItems = function(orderId, cb){
   return this.findById(orderId)
   .deepPopulate('item items.item')
   .then(function(allItems){
