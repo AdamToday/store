@@ -73,9 +73,7 @@ router.get('/:userId/cart', function(req, res, next) {
 router.delete('/:userId/:itemid/', function(req, res, next){
 	Order.findByUser(req.params.userId, "inProgress")
 	.then(function(currentCart){
-		console.log('this is currentCart',currentCart)
-		console.log('this is itemid',req.params.itemid)
-		return currentCart.removeItem(req.params.itemid);
+		return currentCart[0].removeItem(req.params.itemid);
 
 	})
 	.then(function(cart){
@@ -88,11 +86,11 @@ router.post('/:userId/item', function(req, res, next) {
 	Order.findByUser(req.params.userId, "inProgress")
 	.then(function(oneCart) {
 		if (oneCart.length) {
-			return oneCart.addItem(req.body);
+			return oneCart[0].addItem(req.body);
 		} else {
 			return Order.create({user: req.params.userId})
 			.then(function(response) {
-				return oneCart.addItem(req.body);
+				return response.addItem(req.body);
 			});
 		}
 	})
