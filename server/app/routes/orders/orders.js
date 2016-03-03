@@ -69,6 +69,20 @@ router.get('/:userId/cart', function(req, res, next) {
 	.then(null, next);
 });
 
+//supposed to remove one item from order. not working yet.
+router.delete('/:userId/:itemid/', function(req, res, next){
+	Order.findByUser(req.params.userId, "inProgress")
+	.then(function(currentCart){
+		console.log('this is currentCart',currentCart)
+		console.log('this is itemid',req.params.itemid)
+		return currentCart.removeItem(req.params.itemid);
+
+	})
+	.then(function(cart){
+		console.log('This is updated cart: ',cart)
+		res.json(cart);
+	})
+})
 //add item to order, if no current order, create one and then add item.
 router.post('/:userId/item', function(req, res, next) {
 	Order.findByUser(req.params.userId, "inProgress")
