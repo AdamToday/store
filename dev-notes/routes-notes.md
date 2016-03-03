@@ -33,3 +33,6 @@
 
 user: 56d74c48ed58503507a53052
 product: 56d74c49ed58503507a5305c
+
+
+{"author": "56d74c48ed58503507a53052", "product": "56d74c49ed58503507a53058", "title": "The best.", "comments":"Chocolate = life.", "rating": 5 }
