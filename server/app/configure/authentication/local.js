@@ -26,6 +26,7 @@ module.exports = function (app) {
 
     passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, strategyFn));
 
+
     // A POST /login route is created to handle login.
     app.post('/login', function (req, res, next) {
 
@@ -54,16 +55,48 @@ module.exports = function (app) {
 
     });
 
-    //POST route added for User signup
-    //redirect?
+    // A POST /signup route is created to handle login.
     app.post('/signup', function (req, res, next) {
-    User.create(req.body)
-    .then(function (user) {
-        req.login(user, function () {
-            res.status(201).json(user);
-        });
-    })
-    .then(null, next);
-});
+
+        var authCb = function (err, user) {
+
+            if (err) return next(err);
+
+            if (!user) {
+                var error = new Error('Invalid login credentials.');
+                error.status = 401;
+                return next(error);
+            }
+
+            // req.logIn will establish our session.
+            req.logIn(user, function (loginErr) {
+                if (loginErr) return next(loginErr);
+                // We respond with a response object that has user with _id and email.
+                res.status(200).send({
+                    user: user.sanitize()
+                });
+            });
+
+        };
+
+        User.findOne({ email: req.body.email })
+        .then(function (user) {
+            if (user) {
+                var error = new Error('There\'s already a user with that email!');
+                return next(error);
+            }
+            else {
+                return User.create(req.body);
+            }
+        })
+        .then(function (user) {
+
+            passport.authenticate('local', authCb)(req, res, next);
+        
+        })
+        .then(null, next);
+
+
+    });
 
 };
