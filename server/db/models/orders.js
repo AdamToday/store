@@ -67,7 +67,6 @@ OrderSchema.methods.addItem = function(itemData) {
 
 OrderSchema.methods.removeItem = function(itemId) {
   var order = this;
-  console.log("this is This! ",this);
   var removeItem;
   return CartItem.findByIdAndRemove(itemId)
   .then(function(){
