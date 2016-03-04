@@ -25,11 +25,17 @@ router.get('/', function(req, res, next) {
 
 //checkout one order
 router.get('/:id/checkout', function(req, res, next) {
-	if (req.order.status === 'inProgress'){
-		req.order.status = 'complete'
+	if (req.order.status === 'complete') {
+		res.sendStatus(403);
 	}
-	req.order.save()
-	.then(null, next);
+	else {
+		req.order.status = 'complete';
+		req.order.save()
+		.then(function(completedOrder) {
+			res.sendStatus(200);
+		})
+		.then(null, next);
+	}
 });
 
 //get all items (populated) for one order
