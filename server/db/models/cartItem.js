@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var CartItemSchema = new Schema({
     item: {type: Schema.Types.ObjectId, ref: 'Product'},
     quantity: {type: Number},
-    //submitted by the post request at checout
+    //submitted by the post request at checkout
     priceAtOrder: {type: Number}
 });
 
