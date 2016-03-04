@@ -23,3 +23,7 @@ router.get('/:id', function(req, res, next) {
 	})
 	.then(null, next);
 });
+
+//add products (admin only)
+
+//edit products (admin only)

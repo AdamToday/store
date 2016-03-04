@@ -41,5 +41,16 @@ router.get('/:id', function(req, res, next) {
 	.then(null, next);
 });
 
-//update user info?
-//put route?
+//update user info
+router.put('/:id', function (req, res, next) {
+	User.findById(req.params.id)
+	.then(function(foundUser){
+		foundUser.update(req.body);
+		foundUser.save();
+	})
+	.then(function(updatedUser) {
+		console.log("updated user: ", updatedUser)
+		res.json(updatedUser);
+	})
+	.then(null, next);
+});

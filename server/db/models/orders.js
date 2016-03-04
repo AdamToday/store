@@ -80,7 +80,6 @@ OrderSchema.methods.addItem = function(itemData) {
 
 OrderSchema.methods.removeItem = function(itemId) {
   var order = this;
-  console.log("this is This! ",this);
   var removeItem;
   // AW: hook issues, don't use these statics 
   return CartItem.findByIdAndRemove(itemId)
