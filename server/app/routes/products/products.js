@@ -4,6 +4,7 @@ module.exports = router;
 var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
 
+// /api/products
 
 //get all
 router.get('/', function(req, res, next) {
@@ -25,5 +26,23 @@ router.get('/:id', function(req, res, next) {
 });
 
 //add products (admin only)
+router.post('/', function (req, res, next) {
+	Product.create(req.body)
+	.then(function (newProduct) {
+		res.json(newProduct);
+	})
+	.then(null, next);
+});
 
 //edit products (admin only)
+router.put('/:id', function (req, res, next) {
+	Product.findById(req.params.id)
+	.then(function(product){
+		product.set(req.body);
+		return product.save();
+	})
+	.then(function(updatedProduct) {
+		res.json(updatedProduct);
+	})
+	.then(null, next);
+});

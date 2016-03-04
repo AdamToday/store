@@ -3,11 +3,17 @@ var router = require('express').Router();
 module.exports = router;
 var mongoose = require('mongoose');
 var Review = mongoose.model('Review');
-/*
-  AW: use router.param
-      dont use compound statics 
 
-*/
+// api/reviews/:id
+router.param('id', function(req, res, next, id){
+  Review.findById(id)
+  .then(function(review){
+    req.review = review; 
+    next();
+  })
+  .then(null, next)
+});
+
 //get all
 router.get('/', function(req, res, next) {
   Review.find(req.query)
@@ -19,12 +25,7 @@ router.get('/', function(req, res, next) {
 
 //get one
 router.get('/:id', function(req, res, next) {
-  // AW use findById
-  Review.find({_id: req.params.id})
-  .then(function(foundReview){
-    res.json(foundReview);
-  })
-  .then(null, next);
+  res.json(req.review);
 });
 
 //post one
@@ -39,55 +40,22 @@ router.post('/', function(req, res, next) {
 //put: update a review
 //security concerns? make sure only the right user can do this
 router.put('/:id', function(req, res, next) {
-
-  /*
-
-      AW: 
-
-      we need to merge the req.body into the req.review
-
-      req.review.set(req.body)
-      req.review.save()
-      .then(function(review){
-        res.json(review)
-      })
-      .then(null, next)
-
-
-
-
-  */
-  Review.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true})
-  .then(function (updatedReview) {
-    console.log("review was updated!");
-    res.json(updatedReview);
+  req.review.set(req.body)
+  req.review.save()
+  .then(function(updatedReview){
+    res.json(updatedReview)
   })
-  .then(null, next);
+  .then(null, next)
 });
 
 //delete one
 router.delete('/:id', function(req, res, next) {
-
-  /*
-      AW
-      
-        req.review.remove()
-        .then(function(){
-            res.status(204).end()
-        })
-        .then(null, next)
-
-      
-
-  */
-  Review.findByIdAndRemove(req.params.id)
-  .then(function (deletedBook) {
-    console.log("review was deleted!");
-    res.sendStatus(204);
+  req.review.remove()
+  .then(function(){
+      res.status(204).end()
   })
-  .then(null, next);
+  .then(null, next)
 });
-
 
 
 

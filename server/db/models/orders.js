@@ -4,10 +4,8 @@ var extend = require('mongoose-schema-extend');
 var Schema = mongoose.Schema;
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
-// AW: this isn't going to work
-// AW: add this and you're good -- > require('./cartItem.js')
+require('./cartItem.js');
 var CartItem = mongoose.model('CartItem');
-
 
 var OrderSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -17,6 +15,9 @@ var OrderSchema = new Schema({
     default: Date.now
   },
   // AW: add a purchase date 
+  purchaseDate: {
+    type: Date
+  },
   status: { type: String, enum: ["inProgress", "complete"], default: "inProgress" }
 });
 
@@ -47,6 +48,8 @@ OrderSchema.statics.findByUser = function(userId, _status, cb){
 
 
 OrderSchema.statics.getPastOrder = function(userId, cb){
+
+  
   return this.find({user: userId, status: "complete"})
   .then(function(pastOrdersByUser){
     if (cb) cb(null, pastOrdersByUser);
@@ -61,6 +64,19 @@ OrderSchema.statics.getAllItems = function(orderId, cb){
     if (cb) cb(null, allItems);
     return allItems;
   });
+};
+
+OrderSchema.statics.findOrCreate = function (userId) {
+  var self = this;
+
+  return this.findOne({user: userId, status: "inProgress"}).exec()
+    .then(function (order) {
+      if (!order) {
+        return self.create({user: userId});
+      } else {
+        return order;
+      }
+    });
 };
 
 OrderSchema.methods.addItem = function(itemData) {
@@ -94,5 +110,6 @@ OrderSchema.methods.removeItem = function(itemId) {
       return order.save();
   })
 };
+
 
 mongoose.model('Order', OrderSchema);
