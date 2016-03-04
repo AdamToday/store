@@ -4,24 +4,30 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 var Schema = mongoose.Schema;
 
-
 var ContactInfoSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
          ref: 'User'
     },
-    phone: {type: String, required: true},
-    address: {type: String, required: true},
+    phone: type: String,
+    street1: String,
+    street2: String,
+    city: String,
+    state: String,
+    zip: Number
 });
 
-//we want to be able to store different phone numbers and addresses for billing versus shipping
 var BillingInfoSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
          ref: 'User'
     },
-    phone: {type: String, required: true},
-    address: {type: String, required: true},
+    phone: type: String,
+    street1: String,
+    street2: String,
+    city: String,
+    state: String,
+    zip: Number
 });
 
 // AW: how to differentiate between guests and authenticated users?
@@ -41,25 +47,8 @@ var schema = new Schema({
         type: Boolean,
         default: false
     },
-    contactInfo: {
-        phone: String,
-        addressStreet1: String,
-        addressStreet2: String,
-        addressCity: String,
-        addressState: String,
-        addressZip: Number
-    },
-    paymentInfo: {
-        phone: String,
-        addressStreet1: String,
-        addressStreet2: String,
-        addressCity: String,
-        addressState: String,
-        addressZip: Number,
-        ccNo: String,
-        ccExpirationMo: {type: String, enum: ['01','02','03','04','05','06','07','08','09', '10', '11','12']},
-        ccCCV: Number
-    },
+    contactInfo: [ContactInfoSchema],
+    billingInfo: [BillingInfoSchema],
     password: {
         type: String
     },
