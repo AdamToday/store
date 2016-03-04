@@ -6,7 +6,7 @@ app.factory('ProductFactory', function ($http) {
 
   ProductFactory.fetchAll = function () {
     return $http.get('/api/products')
-    .then(response => response.data)
+    .then(response => response.data);
   };
 
   ProductFactory.fetchById = function (id) {
