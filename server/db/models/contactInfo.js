@@ -23,5 +23,7 @@ var BillingInfoSchema = new Schema({
     address: {type: String, required: true},
 });
 
+
+/// AW why are these collections?
 mongoose.model('ContactInfo', ContactInfoSchema);
 mongoose.model('BillingInfo', BillingInfoSchema);
