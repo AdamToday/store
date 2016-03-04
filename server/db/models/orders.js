@@ -10,30 +10,23 @@ var CartItem = mongoose.model('CartItem');
 var OrderSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   items: [{ type: Schema.Types.ObjectId, ref: 'CartItem'} ],
-  date: { 
+  date: {
     type: Date,
     default: Date.now
   },
-  // AW: add a purchase date 
   purchaseDate: {
     type: Date
   },
   status: { type: String, enum: ["inProgress", "complete"], default: "inProgress" }
 });
 
+//adds deepPopulate option to populate a reference's reference!
 OrderSchema.plugin(deepPopulate);
 
 OrderSchema.virtual('subtotal').set(function() {
-  // var total = 0;
-  // this.items.forEach(function (item) {
-  //   total += item.price;
-  // });
-  // return total;
-
   return items.reduce(function(acc, next){
-    return acc + next.price; 
-  }, 0)
-
+    return acc + next.price;
+  }, 0);
 });
 
 OrderSchema.statics.findByUser = function(userId, _status, cb){
@@ -41,15 +34,13 @@ OrderSchema.statics.findByUser = function(userId, _status, cb){
   .then(function(ordersByUser){
     if (cb) cb(null, ordersByUser);
     return ordersByUser;
-  })
-
+  });
   // AW: return this.find({user: userId, status: _status}).exec(cb)
 };
 
 
 OrderSchema.statics.getPastOrder = function(userId, cb){
 
-  
   return this.find({user: userId, status: "complete"})
   .then(function(pastOrdersByUser){
     if (cb) cb(null, pastOrdersByUser);
@@ -85,8 +76,7 @@ OrderSchema.methods.addItem = function(itemData) {
   return CartItem.create(itemData)
   .then(function(_newItem) {
     newItem = _newItem;
-    // AW: addToSet ?? idempotent
-    order.items.push(newItem._id);
+    order.items.addToSet(newItem._id);
     return order.save();
   })
   .then(function() {
@@ -96,20 +86,21 @@ OrderSchema.methods.addItem = function(itemData) {
 
 OrderSchema.methods.removeItem = function(itemId) {
   var order = this;
-  var removeItem;
-  // AW: hook issues, don't use these statics 
-  return CartItem.findByIdAndRemove(itemId)
-  // AW: do this instead: 
-  // return CartItem.findById(itemId)
-  // .then(function(item){
-  //   return item.remove()
-  // })
-  .then(function(removed){
-    // AW : order.items.pull(itemId)
-      order.items.splice(order.items.indexOf(itemId),1);
-      return order.save();
+  return CartItem.findById(itemId)
+  .then(function(item){
+    return item.remove();
   })
+  .then(function(removed){
+      order.items.pull(itemId);
+      return order.save();
+  });
 };
 
+OrderSchema.pre('save', function (next) {
+  if(this.status === "complete") {
+    this.purchaseDate = Date.now;
+  }
+  next();
+});
 
 mongoose.model('Order', OrderSchema);
