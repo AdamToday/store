@@ -31,11 +31,16 @@ var BillingInfoSchema = new Schema({
 });
 
 // AW: how to differentiate between guests and authenticated users?
+/* our plan: 
+   email shouldn't be required
+   in checkout route: if email is undefined, throw an error, prompt user for email?
+*/
+
 var schema = new Schema({
+    sessionId: String,
     email: {
         type: String,
         unique: true,
-        required: true 
     },
     firstName: {
         type: String

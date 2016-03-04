@@ -40,7 +40,6 @@ OrderSchema.statics.findByUser = function(userId, _status, cb){
 
 
 OrderSchema.statics.getPastOrder = function(userId, cb){
-
   return this.find({user: userId, status: "complete"})
   .then(function(pastOrdersByUser){
     if (cb) cb(null, pastOrdersByUser);

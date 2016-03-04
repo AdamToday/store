@@ -59,7 +59,8 @@ var seedProducts = function () {
             size: 3.5, 
             description: "Rich, luxurious and complicated. This single origin bar exudes confidence and notes of sophistication.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
-            price: 8.00, 
+            price: 8.00,
+            picture: "assorted.jpg",
             stockAmount: 30
         },
         {
@@ -68,7 +69,8 @@ var seedProducts = function () {
             size: 3.5,
             description: "Rich, luxurious and complicated. This single origin bar exudes confidence and notes of sophistication.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
-            price: 8.00, 
+            price: 8.00,
+            picture: "assorted.jpg",
             stockAmount: 37
         },
         {
@@ -78,6 +80,7 @@ var seedProducts = function () {
             description: "Rich, luxurious and complicated. This single origin bar exudes confidence and notes of sophistication.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
             price: 8.00, 
+            picture: "assorted.jpg",
             stockAmount: 25
         },
         {
@@ -87,6 +90,7 @@ var seedProducts = function () {
             description: "Our signature bar, this is a warm and comforting vegan milk-chocolate treat made with organic coconut milk and roasted hazelnuts.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar, organic coconut milk, hazelnuts", 
             price: 8.00, 
+            picture: "assorted.jpg",
             stockAmount: 37
         },
         {
@@ -95,7 +99,8 @@ var seedProducts = function () {
             size: 7,
             description: "Our signature bar in a more indulgent size, this is a warm and comforting vegan milk-chocolate treat made with organic coconut milk and roasted hazelnuts.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar, organic coconut milk, hazelnuts", 
-            price: 12.00, 
+            price: 12.00,
+            picture: "assorted.jpg",
             stockAmount: 20
         },
         {
@@ -104,7 +109,8 @@ var seedProducts = function () {
             size: 12,
             description: "A blend of chocolates to make a cozy cup of cocoa.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
-            price: 12.00, 
+            price: 12.00,
+            picture: "assorted.jpg",
             stockAmount: 20
         },
         {
@@ -114,6 +120,7 @@ var seedProducts = function () {
             description: "A blend of chocolates to make a cozy cup of cocoa, in a smaller size.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
             price: 6.00, 
+            picture: "assorted.jpg",
             stockAmount: 20
         },
         {
@@ -123,6 +130,7 @@ var seedProducts = function () {
             description: "A smaller collection of our signature truffles.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
             price: 6.00, 
+            picture: "assorted.jpg",
             stockAmount: 20
         },
         {
@@ -132,6 +140,7 @@ var seedProducts = function () {
             description: "A collection of our signature truffles in a just-right size.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
             price: 15.00, 
+            picture: "assorted.jpg",
             stockAmount: 20
         },
         {
@@ -141,6 +150,7 @@ var seedProducts = function () {
             description: "An indulgent collection of our signature truffles in a heart-shaped box and comes in a gift basket with candles and a Barry White's Greatest Hits CD.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
             price: 65.00, 
+            picture: "assorted.jpg",
             stockAmount: 20
         }
     ];
