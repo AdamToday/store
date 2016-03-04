@@ -3,10 +3,14 @@
 <!-- if product stockAmount = 0, change add to cart button and choose quantity selector, and change in stock message to "out of stock" -->
 <p class="product in-stock">{{ product.stockAmount }} in stock</p>
 <p class="product price">{{ product.price }}</p>
-
-<div class="product qty-wrapper">
-    <div class="input-item">
-        <label for="qty">Qty:</label>
-        <input type="text" name="qty" id="qty" value="1" title="Qty" class="product input-text qty" />
-    </div>
-</div>
+<form ng-submit="addItemToCart()" ng-model="newCartItem">
+	<div class="product qty-wrapper">
+	    <div class="input-item">
+	        <label for="qty">Qty:</label>
+	        <input type="text" name="qty" id="qty" value="1" title="Qty" class="product input-text qty" />
+	    </div>
+	</div>
+	<div class="product add-to-cart">
+		<button id="add-to-cart" type="button" title="Add to Cart" class="button">
+	</div>
+</form>
