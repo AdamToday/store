@@ -3,6 +3,9 @@ var mongoose = require('mongoose');
 var extend = require('mongoose-schema-extend');
 var Schema = mongoose.Schema;
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
+
+// AW: this isn't going to work
+// AW: add this and you're good -- > require('./cartItem.js')
 var CartItem = mongoose.model('CartItem');
 
 
@@ -13,17 +16,23 @@ var OrderSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  // AW: add a purchase date 
   status: { type: String, enum: ["inProgress", "complete"], default: "inProgress" }
 });
 
 OrderSchema.plugin(deepPopulate);
 
 OrderSchema.virtual('subtotal').set(function() {
-  var total = 0;
-  this.items.forEach(function (item) {
-    total += item.price;
-  });
-  return total;
+  // var total = 0;
+  // this.items.forEach(function (item) {
+  //   total += item.price;
+  // });
+  // return total;
+
+  return items.reduce(function(acc, next){
+    return acc + next.price; 
+  }, 0)
+
 });
 
 OrderSchema.statics.findByUser = function(userId, _status, cb){
@@ -31,8 +40,11 @@ OrderSchema.statics.findByUser = function(userId, _status, cb){
   .then(function(ordersByUser){
     if (cb) cb(null, ordersByUser);
     return ordersByUser;
-  });
+  })
+
+  // AW: return this.find({user: userId, status: _status}).exec(cb)
 };
+
 
 OrderSchema.statics.getPastOrder = function(userId, cb){
   return this.find({user: userId, status: "complete"})
@@ -57,6 +69,7 @@ OrderSchema.methods.addItem = function(itemData) {
   return CartItem.create(itemData)
   .then(function(_newItem) {
     newItem = _newItem;
+    // AW: addToSet ?? idempotent
     order.items.push(newItem._id);
     return order.save();
   })
@@ -69,8 +82,15 @@ OrderSchema.methods.removeItem = function(itemId) {
   var order = this;
   console.log("this is This! ",this);
   var removeItem;
+  // AW: hook issues, don't use these statics 
   return CartItem.findByIdAndRemove(itemId)
-  .then(function(){
+  // AW: do this instead: 
+  // return CartItem.findById(itemId)
+  // .then(function(item){
+  //   return item.remove()
+  // })
+  .then(function(removed){
+    // AW : order.items.pull(itemId)
       order.items.splice(order.items.indexOf(itemId),1);
       return order.save();
   })

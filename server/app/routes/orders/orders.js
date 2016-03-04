@@ -4,6 +4,22 @@ module.exports = router;
 var mongoose = require('mongoose');
 var Order = mongoose.model('Order');
 
+// api/orders
+
+// AW rethink all URIs, revisit REST principles if necessary 
+
+/*
+	
+	AW: 
+	router.param('id', function(req, res, next, id){
+	Order.findById(id)
+	.then(function(order){
+		req.order = order; 
+		next()
+	})
+	.then(null, next)
+})
+*/
 
 //get all orders
 router.get('/', function(req, res, next) {
@@ -13,6 +29,10 @@ router.get('/', function(req, res, next) {
 	})
 	.then(null, next);
 });
+
+
+// AW more RESTful for the route to be under users 
+// api/users/:userId/orders
 
 //get one user's orders
 router.get('/:userId', function(req, res, next) {
@@ -25,7 +45,19 @@ router.get('/:userId', function(req, res, next) {
 
 
 //checkout route
+
+// AW: /api/orders/:id
+// AW
 router.get('/:currentOrderId/checkout', function(req, res, next) {
+	/*
+	
+	if (req.order.status = 'inProgress'){
+		req.order.status = 'complete'
+	}
+	req.order.save()
+
+
+	*/
 	Order.findOneAndUpdate({_id: req.params.currentOrderId, status: "inProgress"}, {status: "complete"}, {new: true})
 	.then(function(updated) {
 
@@ -35,6 +67,7 @@ router.get('/:currentOrderId/checkout', function(req, res, next) {
 });
 
 //get all items (populated) for one order
+// AW for nested resources, we want: '/api/users/:userId/orders/:orderId'
 router.get('/:userId/:id/all', function(req, res, next) {
 	Order.getAllItems(req.params.id)
 	.then(function(response){
@@ -45,6 +78,8 @@ router.get('/:userId/:id/all', function(req, res, next) {
 });
 
 //get past orders
+// nothing in the uri indicates that we are retrived "past" orders
+// retrieves orders associated with a user 
 router.get('/:userId/pastorders', function(req, res, next) {
 	Order.findByUser(req.params.userId)
 	.then(function(response){
@@ -52,6 +87,8 @@ router.get('/:userId/pastorders', function(req, res, next) {
 	})
 	.then(null, next);
 });
+
+// AW: findOrCreate ? 
 
 //view current (inProgress) order, if there isn't one, create a new order
 router.get('/:userId/cart', function(req, res, next) {
@@ -83,6 +120,7 @@ router.delete('/:userId/:itemid/', function(req, res, next){
 		res.json(cart);
 	})
 })
+// AW rethink
 //add item to order, if no current order, create one and then add item.
 router.post('/:userId/item', function(req, res, next) {
 	Order.findByUser(req.params.userId, "inProgress")
