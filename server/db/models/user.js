@@ -9,7 +9,7 @@ var ContactInfoSchema = new Schema({
         type: Schema.Types.ObjectId,
          ref: 'User'
     },
-    phone: type: String,
+    phone: String,
     street1: String,
     street2: String,
     city: String,
@@ -22,7 +22,7 @@ var BillingInfoSchema = new Schema({
         type: Schema.Types.ObjectId,
          ref: 'User'
     },
-    phone: type: String,
+    phone: String,
     street1: String,
     street2: String,
     city: String,
