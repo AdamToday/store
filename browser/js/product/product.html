@@ -1,7 +1,9 @@
 <h2>{{ product.name }}</h2>
+<img src="{{ product.picture }}" alt="{{product.name}}" title="{{product.name}}">
 <p>{{ product.description }}</p>
 <!-- if product stockAmount = 0, change add to cart button and choose quantity selector, and change in stock message to "out of stock" -->
 <p class="product in-stock">{{ product.stockAmount }} in stock</p>
+<p class="product ingredients">{{product.ingredients}}</p>
 <p class="product price">{{ product.price }}</p>
 <form ng-submit="addItemToCart()" ng-model="newCartItem">
 	<div class="product qty-wrapper">
