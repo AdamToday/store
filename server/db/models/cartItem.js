@@ -6,6 +6,7 @@ var CartItemSchema = new Schema({
     item: {type: Schema.Types.ObjectId, ref: 'Product'},
     quantity: {type: Number},
     //submitted by the post request at checkout
+    // hook?
     priceAtOrder: {type: Number}
 });
 
