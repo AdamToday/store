@@ -99,7 +99,7 @@ schema.pre('save', function (next) {
 
 schema.statics.findOrCreate = function (id) {
   var self = this;
-  return this.findbyId(id).exec()
+  return this.findById(id).exec()
     .then(function (user) {
       if (!user) {
         return self.create({sessionId: id});
