@@ -13,13 +13,12 @@ app.config(function ($stateProvider) {
 
 app.controller('OrdersCtrl', function($scope, allOrders) {
 	$scope.orders = allOrders;
-	console.log("$scope.orders", $scope.products);
 });
 
 app.config(function($stateProvider) {
 	$stateProvider.state('order', {
 		url: '/orders/:orderId/',
-		templateUrl: 'js/user/order.html',
+		templateUrl: 'js/orders/order.html',
 		controller: 'OrderCtrl',
 		resolve: {
 			theOrder: function(OrderFactory, $stateParams) {
@@ -31,4 +30,6 @@ app.config(function($stateProvider) {
 
 app.controller('OrderCtrl', function($scope, theOrder) {
 	$scope.order = theOrder;
+		console.log("$scope.order", $scope.order.items);
+
 });

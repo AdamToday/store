@@ -1,7 +1,6 @@
 <section id="users">
 	<h2>All Users</h2>
 	<div ng-repeat="user in users">
-  <a ui-sref="order({orderId: order._id})">{{ order.items }}</a>
-		<h4>User email: {{ user.email }}</h4>
+  <a ui-sref="user({userId: user._id})">{{ user.email }}</a>
 	</div>
 </section>
