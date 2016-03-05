@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
 	$stateProvider.state('user', {
 		url: '/users/:userId',
-		templateUrl: js/user/userPage.html,
+		templateUrl: 'js/user/userPage.html',
 		controller: 'UserCtrl',
 		resolve: {
 			theUser: function(UserFactory, $stateParams) {
