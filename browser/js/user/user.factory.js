@@ -3,6 +3,10 @@
 app.factory('UserFactory', function($http) {
 	var UserFactory = {};
 
+	UserFactory.fetchAll = function() {
+		return $http.get('/api/users')
+		.then(response => response.data);
+	}
 	UserFactory.fetchById = function(id) {
 		return $http.get('/api/users/' + id)
 		.then(response => response.data);
