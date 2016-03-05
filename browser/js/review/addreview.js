@@ -18,6 +18,7 @@ app.factory('addReviewFactory', function($http){
     }
 });
 app.controller('addReviewCrl', function($scope,addReviewFactory){
+  $scope.rate = 0;
   $scope.max = 5;
   $scope.isReadonly = false;
   $scope.ratingStates = [
