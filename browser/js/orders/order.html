@@ -1,0 +1,4 @@
+<div class="list-group-item" ng-repeat="cartItem in items">
+  <a ui-sref="product({productId: cartItem.item._id})">{{ cartItem.item.name }}</a>
+  <p>Quantity: {{cartItem.quantity}}</p>
+</div>
