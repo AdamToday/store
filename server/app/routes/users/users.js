@@ -6,13 +6,14 @@ var User = mongoose.model('User');
 var Order = mongoose.model('Order');
 
 // api/users/:id
+// if dealing with a guest - the request should use the session id instead of a user id. findOrCreat will look for a user with that id and if there isn't one it will create a new user with that session id and no other info
 router.param('id', function(req, res, next, id){
-	User.findById(id)
+	User.findOrCreate(id)
 	.then(function(user){
-		req.reqUser = user; 
+		req.reqUser = user;
 		next();
 	})
-	.then(null, next)
+	.then(null, next);
 });
 
 //get all users
@@ -79,7 +80,7 @@ router.delete('/:id/cart/items', function(req, res, next){
 	})
 	.then(function(updatedCart){
 		res.json(updatedCart);
-	})
+	});
 });
 
 // add item to order, if no current order, create one and then add item.

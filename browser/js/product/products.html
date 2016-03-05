@@ -1,9 +1,9 @@
 <section id="products">
 	<h2>Products</h2>
-	<p>A seleciton of our finest chocolates.</p>
+	<p>A selection of our finest chocolates.</p>
 	<div ng-repeat="product in products">
 		<img alt="{{product.name}}" title="{{product.name}}" ng-src="{{ product.picture}}">
-		<h3>{{ product.name }}</h3>
+		<h3><a>{{ product.name }}</a></h3>
 		<h4>{{ product.price }}</h4>
 	</div>
 </section>

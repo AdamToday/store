@@ -4,11 +4,8 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 var Schema = mongoose.Schema;
 
+//Y: updated these so they don't have foreign keys for user. they're embedded, not referenced, so they don't need that
 var ContactInfoSchema = new Schema({
-    user: {
-        type: Schema.Types.ObjectId,
-         ref: 'User'
-    },
     phone: String,
     street1: String,
     street2: String,
@@ -18,10 +15,6 @@ var ContactInfoSchema = new Schema({
 });
 
 var BillingInfoSchema = new Schema({
-    user: {
-        type: Schema.Types.ObjectId,
-         ref: 'User'
-    },
     phone: String,
     street1: String,
     street2: String,
@@ -36,6 +29,7 @@ var BillingInfoSchema = new Schema({
    in checkout route: if email is undefined, throw an error, prompt user for email?
 */
 
+//add a userType instead of isAdmin to keep track of user/admin/guest to use in routes
 var schema = new Schema({
     sessionId: String,
     email: {
@@ -46,7 +40,7 @@ var schema = new Schema({
         type: String
     },
     lastName: {
-        type: String 
+        type: String
     },
     isAdmin: {
         type: Boolean,
@@ -102,6 +96,18 @@ schema.pre('save', function (next) {
     next();
 
 });
+
+schema.statics.findOrCreate = function (id) {
+  var self = this;
+  return this.findbyId(id).exec()
+    .then(function (user) {
+      if (!user) {
+        return self.create({sessionId: id});
+      } else {
+        return user;
+      }
+    });
+};
 
 schema.statics.generateSalt = generateSalt;
 schema.statics.encryptPassword = encryptPassword;
