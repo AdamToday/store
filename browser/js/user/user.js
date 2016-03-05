@@ -1,3 +1,20 @@
+app.config(function ($stateProvider) {
+	$stateProvider.state('users', {
+		url: '/users',
+		templateUrl: 'js/user/users.html',
+		controller: 'UsersCtrl',
+		resolve: {
+			allUsers: function(UserFactory) {
+				return UserFactory.fetchAll();
+			}
+		}
+	});
+});
+
+app.controller('UsersCtrl', function($scope, allUsers) {
+	$scope.users = allUsers;
+});
+
 app.config(function($stateProvider) {
 	$stateProvider.state('user', {
 		url: '/users/:userId',
