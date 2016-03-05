@@ -50,6 +50,11 @@ navbar {
     outline: none !important;
   }
 
+  .signup-button {
+    @extend .login-button;
+    margin-left: 10px;
+  }
+
   .welcome {
     float: right;
     margin-top: 12px;
