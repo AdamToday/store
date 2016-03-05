@@ -1,7 +1,17 @@
 <div class = "container">
     <form name='newreview '>
+
+    <fieldset class='form-group'>
     <label for="rating">Rating</label>
-    <input name="rating" id="input-id" ng-model="rating" type="text" class="rating" data-size="lg" > 
+    <br>
+    <!-- <div ng-controller="RatingDemoCtrl"> -->
+        <uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" state-on="'glyphicon-heart'" state-off="'glyphicon-heart-empty'" aria-labelledby="default-rating" no-click="getrate()"></uib-rating>
+        
+        <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{overStar}}</span>
+
+
+    <!-- </div> -->
+    </fieldset>
 
     <fieldset class='form-group'>
         <label for="author-name">author</label>
