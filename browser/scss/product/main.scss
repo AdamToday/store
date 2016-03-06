@@ -11,3 +11,36 @@
   	color: orange;
   }
 }
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+    h4 {
+    white-space: nowrap;
+  }
+}
+
+.view-item {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+    img {
+      width: 100%;
+  }
+    .caption-full {
+    padding: 9px;
+    color: #333;
+    }
+}
+
+.center {
+  text-align: center;
+}
+
+footer {
+    margin: 50px 0;
+}
