@@ -16,6 +16,4 @@ app.config(function ($stateProvider) {
 
 app.controller('ProductsCtrl', function($scope, allProducts) {
 	$scope.products = allProducts;
-    // use below, if we want to set a default sort order
-    // $scope.sortorder = 'name';
 });
