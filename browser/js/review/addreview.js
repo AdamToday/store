@@ -1,23 +1,25 @@
 'use strict';
 app.config(function ($stateProvider) {
     $stateProvider.state('newreview', {
-        url: '/products/addreview',
+        url: '/products/:productID/addReview',
         templateUrl: 'js/review/addreview.html',
         controller: 'addReviewCrl'
     });
 });
+
 app.factory('addReviewFactory', function($http){
     return {
         addNewReview: function(newreview){
             console.log("I am going to post your review",newreview)
             return $http.post('/api/reviews', newreview)
             .then(function(review){
-                return review
+                return review;
             });
         }
     }
 });
-app.controller('addReviewCrl', function($scope,addReviewFactory){
+
+app.controller('addReviewCrl', function($scope, addReviewFactory, $state){
   $scope.rate = 0;
   $scope.max = 5;
   $scope.isReadonly = false;
@@ -45,14 +47,16 @@ app.controller('addReviewCrl', function($scope,addReviewFactory){
         title: $scope.title,
         comments: $scope.comments,
         rating: $scope.rate
-    }
+        };
+
         return addReviewFactory.addNewReview(newreview)
-        .then( function(){
-                console.log("thank you very much!"); 
-            })
+        .then(function(){
+            console.log("thank you very much!");
+            $state.go('products');
+        })
         .then(null, function(err){
-                console.log(err);
-            });
+            console.log(err);
+        });
     }
 
 });
