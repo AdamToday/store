@@ -11,6 +11,10 @@ app.factory('UserFactory', function($http) {
 		return $http.get('/api/users/' + id)
 		.then(response => response.data);
 	}
+	UserFactory.addToCart = function(id, product) {
+		return $http.post('api/users/' + id + '/cart/items', product)
+		.then(response => response.data);
+	}
 
 	return UserFactory;
 })
