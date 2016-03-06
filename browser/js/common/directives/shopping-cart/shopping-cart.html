@@ -8,28 +8,40 @@
         <th>Current Price</th>
         <th>Quantity</th>
       </tr>
+
       <tr>
         <td>name</td>
         <td>price</td>
         <td>quantity <i class="fa fa-trash-o"></i></td>
       </tr>
+
       <tr>
         <td>name</td>
         <td>price</td>
         <td>quantity <i class="fa fa-trash-o"></i></td>
       </tr>
+
       <tr>
         <td>name</td>
         <td>price</td>
         <td>quantity <i class="fa fa-trash-o"></i></td>
       </tr>
+
 <!--       <tr ng-repeat="item in items">
         <td>{{ item.name }}</td>
         <td>{{ item.price }}</td>
         <td>{{ item.quantity }}</td>
       </tr> -->
+
       <tr>
-        <td colspan="3"><h4>Subtotal: $??.??</h4></td>
+        <td colspan="3">
+
+          <div class="pull-right">
+            <h4>Subtotal: $??.??</h4>
+            <button ui-sref="checkout" class="btn btn-default">Checkout</button>
+          </div>
+
+        </td>
       </tr>
     </table>
     </div>
