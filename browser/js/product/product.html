@@ -31,16 +31,16 @@
             <p class="ingredients">Ingredients: {{ product.ingredients }}</p>
             
             <!-- add to cart form -->
-            <form ng-submit="addItemToCart()" ng-model="newCartItem">
+            <form ng-submit="addToCart(user._id)" >
                 <div id="add-to-cart" class="product qty-wrapper">
                     <div class="input-item">
                         <label for="qty">Qty:</label>
-                        <input type="text" name="qty" id="qty" value="1" title="Qty" class="product input-text qty" />
+                        <input  ng-model="newCartItem" type="text" name="qty" id="qty" title="Qty" class="product input-text qty" />
                     </div>
                 </div>
                 <div class="product add-to-cart">
 
-                <input type="submit"  name="Add to Cart" value="Add to Cart" form="add-to-cart" title="Add to Cart" class="product btn btn-primary">
+                <input type="submit"  name="Add to Cart" value="Add to Cart" form="add-to-cart" ng-click='addToCart(user._id)' title="Add to Cart" class="product btn btn-primary">
 
                 </div>
             </form>
