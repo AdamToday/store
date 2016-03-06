@@ -1,10 +1,17 @@
 <section id="products">
+	<span>sort by: </span>
+	<select ng-model="sortorder">
+	  <option selected value="+name">a-z</option>
+	  <option value="-name">z-a</option>
+	  <option value="+price">price: lowest to highest</option>
+	  <option value="-price">price: highest to lowest</option>
+	</select>
 	<h2>Products</h2>
 	<p>A selection of our finest chocolates.</p>
-	<div ng-repeat="product in products">
+	<div ng-repeat="product in products | orderBy: sortorder">
 		<img alt="{{product.name}}" title="{{product.name}}" ng-src="{{ product.picture}}">
 		<h3><a ui-sref="product({ productId: product._id })">{{ product.name }}</a></h3>
-		<h4>{{ product.price }}</h4>
+		<h4>{{ product.price | currency:"$":2 }}</h4>
 		<!--just for testing addreview-->
 		<a ui-sref="newreview"> Add Review </a>
 	</div>

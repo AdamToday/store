@@ -2,4 +2,12 @@
   margin: 0 auto;
   width: 90%;
   @include clearfix;
+
+  h3 a {
+  	color: brown;  
+  }
+
+  h3 a:hover {
+  	color: orange;
+  }
 }
