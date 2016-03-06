@@ -1,3 +1,5 @@
+// *****  ALL PRODUCTS  *****
+
 app.config(function ($stateProvider) {
     $stateProvider.state('products', {
         url: '/products',
@@ -7,7 +9,6 @@ app.config(function ($stateProvider) {
         resolve: { 
         	allProducts: function(ProductFactory){
         		return ProductFactory.fetchAll();
-
         	}
     	}
     });
@@ -15,5 +16,4 @@ app.config(function ($stateProvider) {
 
 app.controller('ProductsCtrl', function($scope, allProducts) {
 	$scope.products = allProducts;
-	console.log("$scope.products: ", $scope.products);
 });
