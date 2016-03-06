@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 //get one
 router.get('/:id', function(req, res, next) {
 	// AW: do a findById here!
-	Product.find({_id: req.params.id})
+	Product.findOne({_id: req.params.id})
 	.then(function(response){
 		res.json(response);
 	})
