@@ -15,6 +15,6 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('ProductCtrl', function($scope, oneProduct) {
-    $scope.product = oneProduct[0];
+    $scope.product = oneProduct;
     console.log("$scope.product: ", $scope.product);
 });
