@@ -1,8 +1,8 @@
-<h2>{{ product.name }}</h2>
+<!-- <h2>{{ product.name }}</h2>
 <img src="{{ product.picture }}" alt="{{product.name}}" title="{{product.name}}">
-<p>{{ product.description }}</p>
+<p>{{ product.description }}</p> -->
 <!-- if product stockAmount = 0, change add to cart button and choose quantity selector, and change in stock message to "out of stock" -->
-<p class="product in-stock">{{ product.stockAmount }} in stock</p>
+<!-- <p class="product in-stock">{{ product.stockAmount }} in stock</p>
 <p class="product ingredients">Ingredients: {{product.ingredients}}</p>
 <p class="product price">{{ product.price | currency:"$":2 }}</p>
 <form ng-submit="addItemToCart()" ng-model="newCartItem">
@@ -17,4 +17,103 @@
 	</div>
 </form>
 <div>
+</div> -->
+
+<!-- template from Start Bootstrap -->
+<div class="container">
+        <img class="img-responsive" src="{{ product.picture }}" alt="{{ product.name }}">
+        <div class="caption-full">
+            <h4 class="pull-right">{{ product.price | currency:"$":2 }}</h4>
+            <h4><a href="#">{{product.name}}</a>
+            </h4>
+            <p>{{ product.description }}</p>
+            <p>Size: {{ product.size }} ounces</p>
+            <p class="ingredients">Ingredients: {{ product.ingredients }}</p>
+            
+            <!-- add to cart form -->
+            <form ng-submit="addItemToCart()" ng-model="newCartItem">
+                <div id="add-to-cart" class="product qty-wrapper">
+                    <div class="input-item">
+                        <label for="qty">Qty:</label>
+                        <input type="text" name="qty" id="qty" value="1" title="Qty" class="product input-text qty" />
+                    </div>
+                </div>
+                <div class="product add-to-cart">
+
+                <input type="submit"  name="Add to Cart" value="Add to Cart" form="add-to-cart" title="Add to Cart" class="product btn btn-primary">
+
+                </div>
+            </form>
+            
+        </div>
+
+        
+    </div>
+
+    <div id="reviews-container" class="container">
+        <div class="ratings">
+                <p class="pull-right">[ # of reviews here ]</p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    Avg. review: 4.0 stars
+                </p>
+            </div>
+    <div class="well">
+
+        <div class="text-right">
+            <a ui-sref="newreview" class="btn btn-success">Leave a Review</a>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+                Anonymous
+                <span class="pull-right">10 days ago</span>
+                <p>This product was great in terms of quality. I would definitely buy another!</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+                Anonymous
+                <span class="pull-right">12 days ago</span>
+                <p>I've alredy ordered another one!</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+                Anonymous
+                <span class="pull-right">15 days ago</span>
+                <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
 </div>
