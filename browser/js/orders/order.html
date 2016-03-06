@@ -1,6 +1,10 @@
-<div class="list-group-item" ng-repeat="cartItem in order.items">
-  <a ui-sref="product({productId: cartItem.item._id})">{{ cartItem.item.name }}</a>
-  <img class='thumbnail' alt="{{cartItem.item.name}}" title="{{cartItem.item.name}}" ng-src="{{ cartItem.item.picture}}">
-  <p>Price: {{cartItem.item.price}}</p>
-  <p>Quantity: {{cartItem.quantity}}</p>
+<div class="container">
+
+  <div class="list-group-item" ng-repeat="cartItem in order.items">
+    <a ui-sref="product({productId: cartItem.item._id})">{{ cartItem.item.name }}</a>
+    <img class='thumbnail' alt="{{cartItem.item.name}}" title="{{cartItem.item.name}}" ng-src="{{ cartItem.item.picture}}">
+    <p>Price: {{cartItem.item.price}}</p>
+    <p>Quantity: {{cartItem.quantity}}</p>
+  </div>
+
 </div>

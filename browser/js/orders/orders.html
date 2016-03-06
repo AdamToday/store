@@ -1,7 +1,11 @@
-<section id="orders">
-	<h2>All Orders</h2>
-	<div ng-repeat="order in orders">
-  <a ui-sref="order({orderId: order._id})">{{ order.items }}</a>
-		<h4>Order status: {{ order.status }}</h4>
-	</div>
-</section>
+<div class="container">
+
+  <section id="orders">
+  	<h2>All Orders</h2>
+  	<div ng-repeat="order in orders">
+    <a ui-sref="order({orderId: order._id})">{{ order.items }}</a>
+  		<h4>Order status: {{ order.status }}</h4>
+  	</div>
+  </section>
+
+</div>

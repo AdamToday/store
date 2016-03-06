@@ -1,7 +1,7 @@
 app.config(function ($stateProvider) {
   $stateProvider.state('shopping-cart', {
     url: '/cart',
-    templateUrl: 'js/common/directives/shopping-cart/shopping-cart.html',
+    templateUrl: '/js/common/directives/shopping-cart/shopping-cart.html'
     // controller: 'OrdersCtrl',
     // resolve: {
     //   allOrders: function(OrderFactory) {
@@ -9,11 +9,4 @@ app.config(function ($stateProvider) {
     //   }
     // }
   });
-});
-
-app.directive('shoppingCart', function () {
-    return {
-        restrict: 'E',
-        templateUrl: 'js/common/directives/shopping-cart/shopping-cart.html'
-    };
 });
