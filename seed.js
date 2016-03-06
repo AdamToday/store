@@ -23,7 +23,7 @@ var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = Promise.promisifyAll(mongoose.model('User'));
 var Product = Promise.promisifyAll(mongoose.model('Product'));
-
+var Review = Promise.promisifyAll(mongoose.model('Review'));
 
 var seedUsers = function () {
 
@@ -159,25 +159,72 @@ var seedProducts = function () {
 
 };
 
+var seedReviews = function () {
+
+    var reviews = [
+        {
+            author: "56db0114240eabe555760b48",
+            product: "56db0114240eabe555760b4b",
+            title: "I love dark chocolate",
+            comments: "Delicious chocolates that come in widely unique flavors.",
+            rating: 4
+        },
+        {
+            author: "56db0114240eabe555760b48",
+            product: "56db0114240eabe555760b4d",
+            title: "I love Chocolate Bar",
+            comments: "I love the chocolates here because they use dark chocolate and the products aren't too sweet! ",
+            rating: 5
+        },
+            {
+            author: "56db0114240eabe555760b47",
+            product: "56db0114240eabe555760b4d",
+            title: "You are the best",
+            comments: "Hey guys!  You are the best in your business. ",
+            rating: 5
+        },
+      
+    ];
+
+    return Review.createAsync(reviews);
+
+};
 connectToDb.then(function () {
-    User.findAsync({}).then(function (users) {
-        if (users.length === 0) {
-            return seedUsers();
+    Review.findAsync({}).then(function (reviews) {
+        if (reviews.length === 0) {
+            return seedReviews();
         } else {
-            console.log(chalk.magenta('Seems to already be user data, exiting!'));
+            console.log(chalk.magenta('Seems to already be review data, exiting!'));
             process.kill(0);
         }
     }).then(function () {
-        console.log(chalk.green('User seed successful!'))
-        return seedProducts();
-    }).then(function () {
-        console.log(chalk.green('Product seed successful!'))
+        console.log(chalk.green('Review seed successful!'))
         process.kill(0);
     }).catch(function (err) {
         console.error(err);
         process.kill(1);
     });
 });
+
+// connectToDb.then(function () {
+//     User.findAsync({}).then(function (users) {
+//         if (users.length === 0) {
+//             return seedUsers();
+//         } else {
+//             console.log(chalk.magenta('Seems to already be user data, exiting!'));
+//             process.kill(0);
+//         }
+//     }).then(function () {
+//         console.log(chalk.green('User seed successful!'))
+//         return seedProducts();
+//     }).then(function () {
+//         console.log(chalk.green('Product seed successful!'))
+//         process.kill(0);
+//     }).catch(function (err) {
+//         console.error(err);
+//         process.kill(1);
+//     });
+// });
 
 // connectToDb.then(function () {
 //     Product.findAsync({}).then(function (products) {
