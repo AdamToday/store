@@ -1,4 +1,4 @@
-<section id="products">
+<!-- <section id="products">
 	<span>sort by: </span>
 	<select ng-model="sortorder" ng-init="sortorder='+name'">	
 	  <option value="+name">a-z</option>
@@ -9,10 +9,44 @@
 	<h2>Products</h2>
 	<p>A selection of our finest chocolates.</p>
 	<div ng-repeat="product in products | orderBy: sortorder">
-		<img alt="{{product.name}}" title="{{product.name}}" ng-src="{{ product.picture}}">
+		<img alt="{{product.name}}" title="{{product.name}}" ng-src="{{product.picture}}">
 		<h3><a ui-sref="product({ productId: product._id })">{{ product.name }}</a></h3>
-		<h4>{{ product.price | currency:"$":2 }}</h4>
+		<h4>{{ product.price | currency:"$":2 }}</h4> -->
 		<!--just for testing addreview-->
-		<a ui-sref="newreview"> Add Review </a>
+<!-- 	<a ui-sref="newreview"> Add Review </a>
 	</div>
-</section>
+</section> -->
+
+<div class="container">
+	<section id="products">
+
+		<span>sort by: </span>
+		<select ng-model="sortorder" ng-init="sortorder='+name'">	
+		  <option value="+name">a-z</option>
+		  <option value="-name">z-a</option>
+		  <option value="+price">price: lowest to highest</option>
+		  <option value="-price">price: highest to lowest</option>
+		</select>
+
+		<h2>Products</h2>
+		<p>A selection of our finest chocolates.</p>
+		
+		<div ng-repeat="product in products | orderBy: sortorder" class="col-sm-4 col-lg-4 col-md-4">
+		  <div class="thumbnail">
+		      <img alt="{{product.name}}" title="{{product.name}}" ng-src="{{product.picture}}">
+		      <div class="caption">
+		          <h4><a ui-sref="product({ productId: product._id })">{{ product.name }}</a>
+		          </h4>
+		          <h4>{{ product.price | currency:"$":2 }}</h4>
+		          <p>{{ product.description }}</p>
+		      </div>
+		      <div class="view-item">
+		          <a ui-sref="product({ productId: product._id })"><button class="btn btn-default center">View item</button></a>
+		      </div>
+		        <!--just for testing addreview-->
+		  		<a ui-sref="newreview"> Add Review </a>
+		  </div>
+			</div>
+	</section>
+	</div>
+</div>
