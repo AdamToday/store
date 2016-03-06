@@ -1,7 +1,7 @@
 <section id="products">
 	<span>sort by: </span>
-	<select ng-model="sortorder">
-	  <option selected value="+name">a-z</option>
+	<select ng-model="sortorder" ng-init="sortorder='+name'">	
+	  <option value="+name">a-z</option>
 	  <option value="-name">z-a</option>
 	  <option value="+price">price: lowest to highest</option>
 	  <option value="-price">price: highest to lowest</option>
