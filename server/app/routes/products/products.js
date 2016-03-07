@@ -3,8 +3,19 @@ var router = require('express').Router();
 module.exports = router;
 var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
+var Review = mongoose.model('Review');
 
 // /api/products
+
+//get all reviews for one product
+router.get('/:id/reviews', function(req, res, next){
+	Review.findByProduct(req.params.id)
+	.then(function(response){
+		console.log("reviews by product response: ", response);
+		res.json(response);
+	})
+	.then(null, next);
+});
 
 //get all
 router.get('/', function(req, res, next) {
@@ -24,6 +35,7 @@ router.get('/:id', function(req, res, next) {
 	})
 	.then(null, next);
 });
+
 
 //add products (admin only)
 router.post('/', function (req, res, next) {
