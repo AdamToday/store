@@ -22,7 +22,10 @@ app.controller('ProductCtrl', function($scope, theUser, oneProduct, UserFactory,
     $scope.newCartItem = 1;
     $scope.addToCart = function(userId) {
         var newItem = {item: $scope.product, quantity: $scope.newCartItem}
-        UserFactory.addToCart(userId, newItem);
+        UserFactory.addToCart(userId, newItem)
+        .then(function() {
+            $scope.added = "Item added to cart!";
+        })
     };
     $scope.addReview = function () {
         if ($scope.user) {
@@ -32,5 +35,8 @@ app.controller('ProductCtrl', function($scope, theUser, oneProduct, UserFactory,
     };
     $scope.removeError = function () {
         $scope.error = null;
+    };
+    $scope.removeAdded = function () {
+        $scope.added = null;
     };
 });
