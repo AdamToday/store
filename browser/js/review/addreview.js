@@ -1,7 +1,7 @@
 'use strict';
 app.config(function ($stateProvider) {
-    $stateProvider.state('newreview', {
-        url: '/products/:productID/addReview',
+    $stateProvider.state('product.newreview', {
+        url: '/addReview',
         templateUrl: 'js/review/addreview.html',
         controller: 'addReviewCrl'
     });
@@ -37,13 +37,9 @@ app.controller('addReviewCrl', function($scope, addReviewFactory, $state){
     $scope.rate = value;
   };
 
-  
-    var userid = "56db0114240eabe555760b48";
-    var productId = "56db0114240eabe555760b4c";   
-
     $scope.addreview = function(){
-        var newreview = { author: userid,
-        product: productId,
+        var newreview = { author: $scope.user._id,
+        product: $scope.product._id,
         title: $scope.title,
         comments: $scope.comments,
         rating: $scope.rate
@@ -52,7 +48,7 @@ app.controller('addReviewCrl', function($scope, addReviewFactory, $state){
         return addReviewFactory.addNewReview(newreview)
         .then(function(){
             console.log("thank you very much!");
-            $state.go('products');
+            $state.go('product');
         })
         .then(null, function(err){
             console.log(err);
