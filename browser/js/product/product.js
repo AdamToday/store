@@ -16,7 +16,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('ProductCtrl', function($scope, theUser, oneProduct, UserFactory) {
+app.controller('ProductCtrl', function($scope, theUser, oneProduct, UserFactory, $state) {
     $scope.user = theUser;
     $scope.product = oneProduct;
     $scope.newCartItem = 1;
@@ -24,5 +24,10 @@ app.controller('ProductCtrl', function($scope, theUser, oneProduct, UserFactory)
         var newItem = {item: $scope.product, quantity: $scope.newCartItem}
         UserFactory.addToCart(userId, newItem);
     };
-    console.log("$scope.product: ", $scope.product);
+    $scope.addReview = function () {
+        if ($scope.user) {
+            $state.go('product.newreview');
+        }
+        else $scope.error = "You must be logged in to do that!";
+    };
 });
