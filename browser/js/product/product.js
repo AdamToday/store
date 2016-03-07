@@ -16,17 +16,29 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('ProductCtrl', function($scope, theUser, oneProduct, UserFactory, $state) {
+app.controller('ProductCtrl', function($scope, theUser, oneProduct, UserFactory, $state, $localStorage) {
     $scope.user = theUser;
     $scope.product = oneProduct;
     $scope.newCartItem = 1;
+
     $scope.addToCart = function(userId, qty) {
-        var newItem = {item: $scope.product, quantity: qty}
-        UserFactory.addToCart(userId, newItem)
-        .then(function() {
-            $scope.added = "Item added to cart!";
-        })
+        if (!userId) {
+            if (!$localStorage.cart) $localStorage.cart = [];
+            $localStorage.cart.push({
+                item: oneProduct._id,
+                quantity: qty,
+                priceAtOrder: oneProduct.price
+            });
+            console.log($localStorage.cart);
+        } else {
+            var newItem = {item: $scope.product, quantity: qty}
+            UserFactory.addToCart(userId, newItem)
+            .then(function() {
+                $scope.added = "Item added to cart!";
+            });
+        }
     };
+
     $scope.addReview = function () {
         if ($scope.user) {
             $state.go('product.newreview');
