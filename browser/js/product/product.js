@@ -21,7 +21,6 @@ app.controller('ProductCtrl', function($scope, theUser, oneProduct, UserFactory,
     $scope.product = oneProduct;
     $scope.newCartItem = 1;
     $scope.addToCart = function(userId, qty) {
-        console.log('qty', qty)
         var newItem = {item: $scope.product, quantity: qty}
         UserFactory.addToCart(userId, newItem)
         .then(function() {
