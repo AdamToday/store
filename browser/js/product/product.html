@@ -66,10 +66,12 @@
     <div class="well">
 
         <div class="text-right">
+            <div class="alert alert-danger" ng-show="error">
+                <a href="#" class="close" ng-click="removeError()"><i class="fa fa-times"></i></a>
+                    {{ error }}
+            </div>
+            
             <button ng-click="addReview(product._id, user._id)" class="btn btn-success">Leave a Review</button>
-            <alert type="danger" ng-show="error">
-                {{ error }}
-            </alert>
         </div>
 
         <hr>

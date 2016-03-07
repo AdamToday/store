@@ -30,4 +30,7 @@ app.controller('ProductCtrl', function($scope, theUser, oneProduct, UserFactory,
         }
         else $scope.error = "You must be logged in to do that!";
     };
+    $scope.removeError = function () {
+        $scope.error = null;
+    };
 });
