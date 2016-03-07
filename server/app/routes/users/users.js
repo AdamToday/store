@@ -73,10 +73,10 @@ router.get('/:id/cart', function(req, res, next) {
 });
 
 // remove one item from order
-router.delete('/:id/cart/items', function(req, res, next){
+router.delete('/:id/cart/items/:itemId', function(req, res, next){
 	Order.findByUser(req.reqUser, "inProgress")
 	.then(function(currentCart){
-		return currentCart[0].removeItem(req.body.itemId);
+		return currentCart[0].removeItem(req.params.itemId);
 	})
 	.then(function(updatedCart){
 		res.json(updatedCart);

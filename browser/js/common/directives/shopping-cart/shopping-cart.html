@@ -1,8 +1,13 @@
 <div class="container">
   <section id="cart">
     <h2>Shopping Cart</h2>
-    <div>
-    <table class="table">
+    <div class="container checkout">
+      <div>
+      <h4>Subtotal: $??{{cart.subtotal}}</h4>
+      <button ui-sref="checkout" class="btn btn-default btn-checkout">Checkout</button>
+    </div>
+    <!-- <div> -->
+    <!-- <table class="table">
       <tr>
         <th>Item Name</th>
         <th>Current Price</th>
@@ -25,7 +30,8 @@
         <td>name</td>
         <td>price</td>
         <td>quantity <i class="fa fa-trash-o"></i></td>
-      </tr>
+      </tr> -->
+
 
 <!--       <tr ng-repeat="item in items">
         <td>{{ item.name }}</td>
@@ -33,7 +39,7 @@
         <td>{{ item.quantity }}</td>
       </tr> -->
 
-      <tr>
+     <!--  <tr>
         <td colspan="3">
 
           <div class="pull-right">
@@ -43,7 +49,18 @@
 
         </td>
       </tr>
-    </table>
-    </div>
-  </section>
+    </table> -->
+
+
+  <div class="list-group-item" ng-repeat="cartItem in cart.items">
+    <img class='cartImg' alt="{{cartItem.item.name}}" title="{{cartItem.item.name}}" ng-src="{{ cartItem.item.picture}}">
+    <a ui-sref="product({productId: cartItem.item._id})">{{ cartItem.item.name }}</a>
+    <p>Price: {{cartItem.item.price}}</p>
+    <a ng-click='deleteItem(cartItem)'><i class="fa fa-trash-o"></i></a>
+    <p>Quantity: {{cartItem.quantity}}</p>
+  </div>
+
+</div>
+<!--     </div>
+ -->  </section>
 </div>

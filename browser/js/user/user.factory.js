@@ -15,6 +15,14 @@ app.factory('UserFactory', function($http) {
 		return $http.post('api/users/' + id + '/cart/items', product)
 		.then(response => response.data);
 	}
+	UserFactory.fetchCart = function(userId) {
+		return $http.get('/api/users/' + userId + '/cart')
+		.then(response => response.data);
+	}
+	UserFactory.deleteFromCart = function(id, productId) {
+		return $http.delete('api/users/' + id + '/cart/items' + '/' + productId)
+		.then(response => response.data);
+	}
 
 	return UserFactory;
 })

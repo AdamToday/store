@@ -31,6 +31,7 @@ OrderSchema.virtual('subtotal').set(function() {
 
 OrderSchema.statics.findByUser = function(userId, _status, cb){
   return this.find({user: userId, status: _status})
+  .deepPopulate('item items.item')
   .then(function(ordersByUser){
     if (cb) cb(null, ordersByUser);
     return ordersByUser;
@@ -59,7 +60,8 @@ OrderSchema.statics.getAllItems = function(orderId, cb){
 OrderSchema.statics.findOrCreate = function (userId) {
   var self = this;
 
-  return this.findOne({user: userId, status: "inProgress"}).exec()
+  return this.findOne({user: userId, status: "inProgress"})
+  .deepPopulate('item items.item')
     .then(function (order) {
       if (!order) {
         return self.create({user: userId});
