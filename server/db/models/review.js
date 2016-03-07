@@ -5,9 +5,10 @@ var Schema = mongoose.Schema;
 var ReviewSchema = new Schema({
     author: {type: Schema.Types.ObjectId, ref: 'User',required: true},
     product: {type: Schema.Types.ObjectId, ref: 'Product',required: true},
-    title: {type: String },
+    title: {type: String},
     comments: {type: String, required: true},
-    rating: {type: Number, enum: [1,2,3,4,5], required: true}
+    rating: {type: Number, enum: [1,2,3,4,5], required: true},
+    date: {type: Date, default: Date.now}
 });
 
 
@@ -21,7 +22,9 @@ ReviewSchema.statics.findByAuthor = function(authorId, cb){
 
 ReviewSchema.statics.findByProduct = function(productId, cb){
 	return this.find({product: productId})
+  .populate('author')
 	.then(function(reviewsByProduct){
+    console.log("from findByProduct: ", reviewsByProduct);
 		if (cb) cb(null, reviewsByProduct);
 		return reviewsByProduct;
 	});
