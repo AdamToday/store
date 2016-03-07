@@ -42,7 +42,10 @@
                 <div class="product add-to-cart">
 
                 <input type="submit"  name="Add to Cart" value="Add to Cart" form="add-to-cart" ng-click='addToCart(user._id)' title="Add to Cart" class="product btn btn-primary">
-
+                <div class="alert alert-success" ng-show="added">
+                    <a href="#" class="close" ng-click="removeAdded()"><i class="fa fa-times"></i> </a>
+                        {{ added }}
+                </div>
                 </div>
             </form>
             
