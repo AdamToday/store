@@ -30,19 +30,23 @@ var seedUsers = function () {
     var users = [
         {
             email: 'elizabeth@chocolate.com',
-            password: 'password1'
+            password: 'password1',
+            isAdmin: true
         },
         {
             email: 'zhengshi@chocolate.com',
-            password: 'password2'
+            password: 'password2',
+            isAdmin: true
         },
                 {
             email: 'yuval@chocolate.com',
-            password: 'password3'
+            password: 'password3',
+            isAdmin: true
         },
         {
             email: 'emily@chocolate.com',
-            password: 'password4'
+            password: 'password4',
+            isAdmin: true
         }
     ];
 
@@ -189,16 +193,37 @@ var seedReviews = function () {
     return Review.createAsync(reviews);
 
 };
+
+// connectToDb.then(function () {
+//     Review.findAsync({}).then(function (reviews) {
+//         if (reviews.length === 0) {
+//             return seedReviews();
+//         } else {
+//             console.log(chalk.magenta('Seems to already be review data, exiting!'));
+//             process.kill(0);
+//         }
+//     }).then(function () {
+//         console.log(chalk.green('Review seed successful!'))
+//         process.kill(0);
+//     }).catch(function (err) {
+//         console.error(err);
+//         process.kill(1);
+//     });
+// });
+
 connectToDb.then(function () {
-    Review.findAsync({}).then(function (reviews) {
-        if (reviews.length === 0) {
-            return seedReviews();
+    User.findAsync({}).then(function (users) {
+        if (users.length === 0) {
+            return seedUsers();
         } else {
-            console.log(chalk.magenta('Seems to already be review data, exiting!'));
+            console.log(chalk.magenta('Seems to already be user data, exiting!'));
             process.kill(0);
         }
     }).then(function () {
-        console.log(chalk.green('Review seed successful!'))
+        console.log(chalk.green('User seed successful!'))
+        return seedProducts();
+    }).then(function () {
+        console.log(chalk.green('Product seed successful!'))
         process.kill(0);
     }).catch(function (err) {
         console.error(err);
@@ -206,39 +231,3 @@ connectToDb.then(function () {
     });
 });
 
-// connectToDb.then(function () {
-//     User.findAsync({}).then(function (users) {
-//         if (users.length === 0) {
-//             return seedUsers();
-//         } else {
-//             console.log(chalk.magenta('Seems to already be user data, exiting!'));
-//             process.kill(0);
-//         }
-//     }).then(function () {
-//         console.log(chalk.green('User seed successful!'))
-//         return seedProducts();
-//     }).then(function () {
-//         console.log(chalk.green('Product seed successful!'))
-//         process.kill(0);
-//     }).catch(function (err) {
-//         console.error(err);
-//         process.kill(1);
-//     });
-// });
-
-// connectToDb.then(function () {
-//     Product.findAsync({}).then(function (products) {
-//         if (products.length === 0) {
-//             return seedProducts();
-//         } else {
-//             console.log(chalk.magenta('Seems to already be product data, exiting!'));
-//             process.kill(0);
-//         }
-//     }).then(function () {
-//         console.log(chalk.green('Product seed successful!'));
-//         process.kill(0);
-//     }).catch(function (err) {
-//         console.error(err);
-//         process.kill(1);
-//     });
-// });
