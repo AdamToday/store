@@ -14,6 +14,11 @@ app.factory('ProductFactory', function ($http) {
     .then(response => response.data);
   };
 
+  ProductFactory.fetchAllReviewsByProductId = function(id) {
+    return $http.get('/api/products/' + id + '/reviews')
+    .then(response => response.data);
+  };
+
   return ProductFactory;
 
 });
