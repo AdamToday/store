@@ -24,7 +24,6 @@ ReviewSchema.statics.findByProduct = function(productId, cb){
 	return this.find({product: productId})
   .populate('author')
 	.then(function(reviewsByProduct){
-    console.log("from findByProduct: ", reviewsByProduct);
 		if (cb) cb(null, reviewsByProduct);
 		return reviewsByProduct;
 	});

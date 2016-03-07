@@ -12,7 +12,7 @@ router.param('id', function(req, res, next, id){
 		next()
 	})
 	.then(null, next)
-})/
+});
 
 //get all orders
 router.get('/', function(req, res, next) {
