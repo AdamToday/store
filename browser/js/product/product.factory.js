@@ -16,7 +16,10 @@ app.factory('ProductFactory', function ($http) {
 
   ProductFactory.fetchAllReviewsByProductId = function(id) {
     return $http.get('/api/products/' + id + '/reviews')
-    .then(response => response.data);
+    .then(function(response) {
+    console.log("product reviews: ", response.data);
+        return response.data;
+    });
   };
 
   return ProductFactory;
