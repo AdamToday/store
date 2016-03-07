@@ -28,10 +28,17 @@
 		  <option value="-price">price: highest to lowest</option>
 		</select>
 
+		<span>select by: </span>
+		<select ng-model="selectby">	
+		  <option value="Bar">Chocolate Bar</option>
+		  <option value="Drinking">Drinking Chocolate</option>
+		  <option value="Assorted">Assorted</option>
+		</select>
+
 		<h2>Products</h2>
 		<p>A selection of our finest chocolates.</p>
 		
-		<div ng-repeat="product in products | orderBy: sortorder" class="col-sm-4 col-lg-4 col-md-4">
+		<div ng-repeat="product in products | filter: {type:selectby} | orderBy: sortorder" class="col-sm-4 col-lg-4 col-md-4">	
 		  <div class="thumbnail">
 		      <img alt="{{product.name}}" title="{{product.name}}" ng-src="{{product.picture}}">
 		      <div class="caption">
