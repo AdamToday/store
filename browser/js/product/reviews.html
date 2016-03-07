@@ -1,12 +1,10 @@
 <div class="row" ng-repeat="review in reviews">
     <div class="col-md-12">
-        <span class="glyphicon glyphicon-heart"></span>
-        <span class="glyphicon glyphicon-heart"></span>
-        <span class="glyphicon glyphicon-heart"></span>
-        <span class="glyphicon glyphicon-heart"></span>
-        <span class="glyphicon glyphicon-heart-empty"></span>
+        <h4>{{ review.title }}</h4>
+        <span class="glyphicon glyphicon-heart" ng-repeat="num in getRating(review.rating)"></span><!-- 
+         --><span class="glyphicon glyphicon-heart-empty" ng-repeat="num in getRating(5-review.rating)"></span>
         {{ review.author.email }}
-        <span class="pull-right">{{ review.date }}</span>
+        <span class="pull-right">{{ review.date | date : 'mediumDate' }}</span>
         <p>{{ review.comments }}</p>
     </div>
 </div>

@@ -4,6 +4,7 @@ app.directive('reviewsPerProduct',function(ProductFactory) {
 	return {
 		restrict: 'E',
 		templateUrl: 'js/product/reviews.html',
+		controller: 'reviewsCtrl',
 		scope: {
 			product: '='	
 		},
