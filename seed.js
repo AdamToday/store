@@ -64,7 +64,7 @@ var seedProducts = function () {
             description: "Rich, luxurious and complicated. This single origin bar exudes confidence and notes of sophistication.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
             price: 8.00,
-            picture: "assorted.jpg",
+            picture: "bar.jpg",
             stockAmount: 30
         },
         {
@@ -74,7 +74,7 @@ var seedProducts = function () {
             description: "Rich, luxurious and complicated. This single origin bar exudes confidence and notes of sophistication.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
             price: 8.00,
-            picture: "assorted.jpg",
+            picture: "bar.jpg",
             stockAmount: 37
         },
         {
@@ -84,7 +84,7 @@ var seedProducts = function () {
             description: "Rich, luxurious and complicated. This single origin bar exudes confidence and notes of sophistication.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
             price: 8.00, 
-            picture: "assorted.jpg",
+            picture: "bar.jpg",
             stockAmount: 25
         },
         {
@@ -94,7 +94,7 @@ var seedProducts = function () {
             description: "Our signature bar, this is a warm and comforting vegan milk-chocolate treat made with organic coconut milk and roasted hazelnuts.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar, organic coconut milk, hazelnuts", 
             price: 8.00, 
-            picture: "assorted.jpg",
+            picture: "bar.jpg",
             stockAmount: 37
         },
         {
@@ -104,7 +104,7 @@ var seedProducts = function () {
             description: "Our signature bar in a more indulgent size, this is a warm and comforting vegan milk-chocolate treat made with organic coconut milk and roasted hazelnuts.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar, organic coconut milk, hazelnuts", 
             price: 12.00,
-            picture: "assorted.jpg",
+            picture: "bar.jpg",
             stockAmount: 20
         },
         {
@@ -114,7 +114,7 @@ var seedProducts = function () {
             description: "A blend of chocolates to make a cozy cup of cocoa.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
             price: 12.00,
-            picture: "assorted.jpg",
+            picture: "drinking.jpg",
             stockAmount: 20
         },
         {
@@ -124,7 +124,7 @@ var seedProducts = function () {
             description: "A blend of chocolates to make a cozy cup of cocoa, in a smaller size.", 
             ingredients: "organic cocoa liqueur, organic cocoa butter and pure, organic cane sugar", 
             price: 6.00, 
-            picture: "assorted.jpg",
+            picture: "drinking.jpg",
             stockAmount: 20
         },
         {
