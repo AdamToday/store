@@ -20,6 +20,7 @@
 </div> -->
 
 <!-- template from Start Bootstrap -->
+<ui-view>
 <div class="container">
         <img class="img-responsive" src="{{ product.picture }}" alt="{{ product.name }}">
         <div class="caption-full">
@@ -62,7 +63,12 @@
     <div class="well">
 
         <div class="text-right">
-            <a ui-sref="newreview" class="btn btn-success">Leave a Review</a>
+            <div class="alert alert-danger" ng-show="error">
+                <a href="#" class="close" ng-click="removeError()"><i class="fa fa-times"></i></a>
+                    {{ error }}
+            </div>
+            
+            <button ng-click="addReview(product._id, user._id)" class="btn btn-success">Leave a Review</button>
         </div>
 
         <hr>
@@ -116,3 +122,4 @@
     </div>
 
 </div>
+</ui-view>

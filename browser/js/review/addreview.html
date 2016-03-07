@@ -1,5 +1,5 @@
 <div class = "container">
-    <h2>You are reviewing: [product name here]</h2>
+    <h2>You are reviewing: {{ product.name }}</h2>
     <form name='newreview '>
 
     <fieldset class='form-group'>
@@ -17,15 +17,15 @@
     <fieldset class='form-group'>
         <label for="author-name">Author</label>
         <br>
-    	<input name="author" ng-model="author"class="form-control" type='text'>
+    	<input name="author" ng-model="author"class="form-control" type='text' placeholder="{{ user.email }}">
     </fieldset>
      <fieldset class='form-group'>
         <label for="review-title">Title</label>
-        <input name="title" class="form-control" type='text' ng-model="title" placeholder="title"> 
+        <input name="title" class="form-control" type='text' ng-model="title" placeholder="Your title here!"> 
     </fieldset>
     <fieldset class="form-group">
-        <label for="exampleTextarea">Comment</label>
-        <textarea class="form-control" id="exampleTextarea" ng-model="comments" rows="4"></textarea>
+        <label for="exampleTextarea">Comments</label>
+        <textarea class="form-control" id="exampleTextarea" ng-model="comments" rows="4" placeholder="Your comments here!"></textarea>
     </fieldset>
     
     <button type="submit" class="btn btn-primary" ng-click="addreview()">Submit</button>
