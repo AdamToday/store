@@ -19,7 +19,7 @@ app.config(function ($stateProvider) {
   });
 });
 
-app.controller('CartCtrl', function($scope, theUser, currentCart, UserFactory) {
+app.controller('CartCtrl', function($scope, currentCart, UserFactory) {
     $scope.userId = currentCart.user;
     $scope.cart = currentCart;
     console.log('subtotal', $scope.cart.subtotal)
