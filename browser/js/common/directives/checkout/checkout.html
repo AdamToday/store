@@ -1,42 +1,58 @@
-<div class = "container col-lg-4">
+<div class = "container ">
     <h2>Add your shipping address</h2>
     <form name='check-out'>
-    <fieldset class='form-group'>
-        <label for="fullname"> Full name: </label>
-        <br>
-    	<input name="fullname" ng-model="fullname"class="form-control" type='text' placeholder="Full name">
-    </fieldset>
-     <fieldset class='form-group'>
+    <div class="row">
+        <fieldset class='form-group col-lg-4'>
+            <label for="firstname"> First name: </label>
+            <br>
+        	<input name="firstname" ng-model="firstname"class="form-control" type='text' placeholder="First name">
+        </fieldset>
+
+        <fieldset class='form-group col-lg-4'>
+            <label for="lastname"> Last name: </label>
+            <br>
+            <input name="lastname" ng-model="lastname"class="form-control" type='text' placeholder="Last name">
+        </fieldset>
+     </div>
+    <div class="row">
+        <fieldset class="form-group col-lg-4">
+            <label for="phone">Phone number</label>
+            <input class="form-control" id="phone" ng-model="phone"placeholder="phone number, extension">
+        </fieldset>
+    </div>
+    <div class="row">
+     <fieldset class='form-group col-lg-4'>
         <label for="address1">Address line 1: </label>
         <input name="address1" class="form-control" type='text' ng-model="address1" placeholder="Stree adress, P.O. box, company name, c/o"> 
     </fieldset>
-     <fieldset class='form-group'>
+     <fieldset class='form-group col-lg-4'>
         <label for="address2">Address line 2: </label>
         <input name="address2" class="form-control" type='text' ng-model="address2" placeholder="Appartmet, suit, unit, building,floor, etc."> 
     </fieldset>
-    <fieldset class='form-group'>
+    </div>
+
+    <div class="row">
+    <fieldset class='form-group col-lg-4'>
         <label for="city">City: </label>
         <input name="city" class="form-control" type='text' ng-model="city" placeholder="city name"> 
     </fieldset>
 
-    <fieldset class='form-group'>
+    <fieldset class='form-group col-lg-4'>
         <label for="state">State/Province/Region: </label>
         <input name="state" class="form-control" type='text' ng-model="state" placeholder="state/province/region"> 
     </fieldset>
-    <fieldset class='form-group'>
+    </div>
+    <div class="row">
+    <fieldset class='form-group col-lg-4'>
         <label for="zip">zip: </label>
         <input name="zip" class="form-control" type='text' ng-model="zip" placeholder="zip code"> 
     </fieldset>
-    <fieldset class="form-group">
+    <fieldset class="form-group col-lg-4">
         <label for="country">Country: </label>
         <input class="form-control" id="country" ng-model="country">
     </fieldset>
-
-    <fieldset class="form-group">
-        <label for="phone">Phone number</label>
-        <input class="form-control" id="phone" ng-model="phone"placeholder="phone number, extension">
-    </fieldset>
-    
-    <button type="submit" class="btn btn-primary" ng-click="checkout()">Ship to this address</button>
+    </div>
+   
+    <button type="submit" class="btn btn-primary" ng-click="updateuserinfo()">Ship to this address</button>
     </form>
 </div>
