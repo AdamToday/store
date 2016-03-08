@@ -4,6 +4,7 @@ module.exports = router;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Order = mongoose.model('Order');
+var Review = mongoose.model('Review');
 
 // api/users/:id
 // if dealing with a guest - the request should use the session id instead of a user id. findOrCreate will look for a user with that id and if there isn't one it will create a new user with that session id and no other info
@@ -52,6 +53,16 @@ router.get('/:id/orders', function(req, res, next) {
 	Order.findByUser(req.reqUser._id)
 	.then(function(orders){
 		res.json(orders);
+	})
+	.then(null, next);
+});
+
+// get one user's reviews
+router.get('/:id/reviews', function (req, res, next) {
+	Review.findByAuthor(req.reqUser._id)
+	.populate('product')
+	.then(function (reviews) {
+		res.json(reviews);
 	})
 	.then(null, next);
 });
