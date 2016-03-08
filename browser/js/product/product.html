@@ -11,7 +11,7 @@
             <p class="ingredients">Ingredients: {{ product.ingredients }}</p>
             
             <!-- add to cart form -->
-            <form ng-submit="addToCart(user._id)" >
+            <form ng-submit="addToCart()" >
                 <div id="add-to-cart" class="product qty-wrapper">
                     <div class="input-item">
                         <label for="qty">Qty:</label>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="product add-to-cart">
 
-                <input type="submit" name="Add to Cart" value="Add to Cart" form="add-to-cart" ng-click='addToCart(user._id, newCartItem)' title="Add to Cart" class="product btn btn-primary">
+                <input type="submit" name="Add to Cart" value="Add to Cart" form="add-to-cart" ng-click='addToCart(newCartItem)' title="Add to Cart" class="product btn btn-primary">
                 <div class="alert alert-success" ng-show="added">
                     <a href="#" class="close" ng-click="removeAdded()"><i class="fa fa-times"></i> </a>
                         {{ added }}
