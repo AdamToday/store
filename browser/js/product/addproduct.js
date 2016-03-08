@@ -8,15 +8,15 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('AddProductCtrl', function($scope, ProductFactory) {
+app.controller('AddProductCtrl', function($scope, ProductFactory, $state, $stateParams) {
    	$scope.newproduct = {};
+    $scope.newproduct.picture = "assorted.jpg";
    	$scope.types = ["Drinking", "Bar", "Assorted"];
    	$scope.sendNewProduct = function(newProduct){
    		ProductFactory.createNewProduct(newProduct).then(function(product){
-   			//set $scope.newProductId to product._id
-
-   			//add $state.go (inject $state) and redirect to new product page with newProductId
-   			console.log("new product added: ", product);
+   			$scope.newProductId = product._id;
+        $state.go('product', {productId: $scope.newProductId});
+   		
    		});
 
        };
