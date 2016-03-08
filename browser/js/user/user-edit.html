@@ -1,0 +1,45 @@
+<div class="container">
+
+<h1>Edit Page</h1>
+
+<!--   <h2>Your Account</h2>
+  <ul>
+    <li>Email: {{ user.email }}</li>
+    <li>Name: {{ user.fullName }}</li>
+    <li>Contact info: {{user.contactInfo}}</li>
+  </ul>
+  <h4 href='#'>View order history</h4>
+  <ui-view></ui-view>
+  <h4 href='#'>View my reviews</h4>
+  <ui-view></ui-view>
+  <button class="btn btn-default">Edit Account Info</button>
+ -->
+
+        <h4>{{ review.title }}</h4>
+
+        {{ review.author.email }}
+        <span class="pull-right">{{ review.date | date : 'mediumDate' }}</span>
+        <p>{{ review.comments }}</p>
+
+
+<fieldset class='inline-form'>
+  <label for="author-name">Email: </label>
+  <input name="email" ng-model="user.email" class="form-control" type='text' value="{{ user.email }}">
+</fieldset>
+ <fieldset class='inline-form'>
+    <label for="review-title">Name: </label>
+    <input name="title" class="form-control" type='text' ng-model="user.name" value="{{ user.name }}"> 
+</fieldset>
+<!-- <fieldset class="form-group"> -->
+    <label for="exampleTextarea">Contact Info: </label>
+    <input name="address1" class="form-inline" type='text' ng-model="user.contactInfo.address1" value="{{ user.contactInfo.address1 }}"> 
+    <input name="address2" class="form-inline" type='text' ng-model="user.contactInfo.address2" value="{{ user.contactInfo.address2 }}"> 
+    <input name="city" class="form-inline" type='text' ng-model="user.contactInfo.city" value="{{ user.contactInfo.city }}"> 
+    <input name="state" class="form-inline" type='text' ng-model="user.contactInfo.state" value="{{ user.contactInfo.state }}"> 
+    <input name="zip" class="form-inline" type='text' ng-model="user.contactInfo.zip" value="{{ user.contactInfo.zip }}"> 
+    <input name="country" class="form-inline" type='text' ng-model="user.contactInfo.country" value="{{ user.contactInfo.country }}"> 
+<!-- </fieldset> -->
+    
+    <button type="submit" class="btn btn-primary" ng-click="addreview()">Submit</button>
+
+</div>

@@ -23,11 +23,32 @@ app.config(function($stateProvider) {
 		resolve: {
 			theUser: function(UserFactory, $stateParams) {
 				return UserFactory.fetchById($stateParams.userId);
+			},
+			theReviews: function (UserFactory, $stateParams) {
+				return UserFactory.fetchUserReviews($stateParams.userId);
+			},
+			thePastOrders: function (UserFactory, $stateParams) {
+				return UserFactory.fetchPastOrders($stateParams.userId);
 			}
 		}
 	});
 });
 
-app.controller('UserCtrl', function($scope, theUser) {
+app.controller('UserCtrl', function($scope, theUser, theReviews, thePastOrders) {
 	$scope.user = theUser;
+	$scope.orders = thePastOrders;
+	$scope.reviews = theReviews;
+});
+
+app.config(function($stateProvider) {
+	$stateProvider.state('user.edit', {
+		url: '/users/:userId/edit',
+		templateUrl: 'js/user/user-edit.html',
+		controller: 'UserCtrl',
+		resolve: {
+			theUser: function(UserFactory, $stateParams) {
+				return UserFactory.fetchById($stateParams.userId);
+			}
+		}
+	});
 });
