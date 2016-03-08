@@ -11,7 +11,8 @@ var ContactInfoSchema = new Schema({
     street2: String,
     city: String,
     state: String,
-    zip: Number
+    zip: Number,
+    country: String
 });
 
 var BillingInfoSchema = new Schema({
@@ -20,7 +21,8 @@ var BillingInfoSchema = new Schema({
     street2: String,
     city: String,
     state: String,
-    zip: Number
+    zip: Number,
+    country: String
 });
 
 // AW: how to differentiate between guests and authenticated users?
