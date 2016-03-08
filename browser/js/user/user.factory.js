@@ -11,11 +11,16 @@ app.factory('UserFactory', function($http) {
 		return $http.get('/api/users/' + id)
 		.then(response => response.data);
 	}
+	UserFactory.updateInfo = function(id, updateinfo){
+		return $http.put('/api/users/' + id, updateinfo)
+		.then(response => response.data)
+	}
 	UserFactory.addToCart = function(id, product) {
 		return $http.post('api/users/' + id + '/cart/items', product)
 		.then(response => response.data);
 	}
 	UserFactory.fetchCart = function(userId) {
+		if (!userId) { userId = 1};
 		return $http.get('/api/users/' + userId + '/cart')
 		.then(response => response.data);
 	}
