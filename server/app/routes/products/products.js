@@ -38,7 +38,8 @@ router.get('/:id', function(req, res, next) {
 
 
 //add products (admin only)
-router.post('/', function (req, res, next) {
+router.post('/addproduct', function (req, res, next) {
+	console.log("req.body: ", req.body);
 	Product.create(req.body)
 	.then(function (newProduct) {
 		res.json(newProduct);

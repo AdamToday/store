@@ -1,0 +1,49 @@
+<div class="container">
+
+  <form id="add-product" name="addProduct" ng-submit="addProduct.$valid && sendNewProduct(newproduct)">
+  	<h2>Add a New Product</h2>
+  	<div class="form-group">
+  	</div>
+  	<fieldset class="form-group">
+  		<label for="name">Product Name</label>
+  		<input type="text" ng-model="newproduct.name" ng-required="true" class="form-control" id="name" placeholder="please enter a product name">
+  	</fieldset>
+  	<fieldset class="form-group">
+  		<label for="type">Product Type</label>
+  		<select id="type" ng-model="newproduct.type">
+  			<option ng-repeat="type in types">{{ type }}</option>
+  		</select>
+  	</fieldset>
+  	<fieldset class="form-group">
+  		<label for="size">Size</label>
+  		<input type="number" ng-model="newproduct.size" ng-required="true" class="form-control" id="size">
+  	</fieldset>
+  	<fieldset class="form-group">
+	  	<label for="description">Description of Product</label>
+	  	<textarea class="form-control" id="description" ng-model="newproduct.description" ng-required="true"  rows="4" placeholder="Describe the product here"></textarea>
+  	</fieldset>
+  	<fieldset class="form-group">
+	  	<label for="ingredients">Product Ingredients</label>
+	  	<textarea class="form-control" id="ingredients" ng-model="newproduct.ingredients"  ng-required="true" rows="4" placeholder="Enter product ingredients here"></textarea>
+  	</fieldset>
+  	<fieldset class="form-group">
+  		<label for ="picture">File Name of Product Picture</label>
+  		<input type="text" ng-model="newproduct.picture" class="form-control" id="picture" placeholder="please enter a file name, for example &quote;chocolate.jpg&quote;">
+  	</fieldset>
+  	<fieldset class="form-group">
+  		<label for ="flavor">Product Flavor</label>
+  		<input type="text" ng-model="newproduct.flavor" class="form-control" id="flavor" placeholder="please enter a flavor, for example &quote;dark&quote;">
+  	</fieldset>
+  	<fieldset>
+  		<label for="price">Price</label>
+  		<input type="number" ng-model="newproduct.price" ng-required="true"  id="price" class="form-control">
+  	</fieldset>
+  	<fieldset>
+  		<label for="stock-amount">Stock Amount</label>
+  		<input type="number" ng-model="newproduct.stockAmount" ng-required="true" id="stock-amount" class="form-control">
+  	</fieldset>
+  	<button type="submit" class="btn btn-default">Add Product</button>
+    
+  </form>
+
+</div>
