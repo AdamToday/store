@@ -21,6 +21,11 @@ app.factory('ProductFactory', function ($http) {
     });
   };
 
+  ProductFactory.createNewProduct = function(newProductObj) {
+    return $http.post('api/products/addproduct', newProductObj)
+    .then(response => response.data);
+  };
+
   return ProductFactory;
 
 });
