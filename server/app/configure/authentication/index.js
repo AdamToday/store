@@ -46,11 +46,15 @@ module.exports = function (app) {
     // This is used by the browser application (Angular) to determine if a user is
     // logged in already.
     app.get('/session', function (req, res) {
-        console.log("req.session.id? ", req.session.id);
-
         if (req.user) {
             res.send({ user: req.user.sanitize() });
         } else {
+            // console.log('session GET else!');
+            // UserModel.findOrCreate(req.session.id)
+            // .then(function (guestUser) {
+            //     console.log("guestUser: ", guestUser);
+            //     res.send({ user: guestUser.sanitize() })
+            // });
             res.status(401).send('No authenticated user.');
         }
     });

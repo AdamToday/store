@@ -97,16 +97,20 @@ schema.pre('save', function (next) {
 
 });
 
-schema.statics.findOrCreate = function (id) {
+schema.statics.findOrCreate = function (id, reqSessId) {
   var self = this;
-  return this.findById(id).exec()
-    .then(function (user) {
-      if (!user) {
-        return self.create({sessionId: id});
-      } else {
-        return user;
-      }
+  if (id == 1) {
+    console.log('in findorcreate', reqSessId, "id:", id)
+    return self.create({sessionId: reqSessId})
+    .then(function(newUser) {
+        return newUser;
     });
+  } else {
+      return this.findById(id).exec()
+      .then(function(foundUser) {
+        return foundUser;
+      });
+  }
 };
 
 schema.statics.generateSalt = generateSalt;

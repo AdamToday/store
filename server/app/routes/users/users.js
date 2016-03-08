@@ -8,8 +8,10 @@ var Order = mongoose.model('Order');
 // api/users/:id
 // if dealing with a guest - the request should use the session id instead of a user id. findOrCreate will look for a user with that id and if there isn't one it will create a new user with that session id and no other info
 router.param('id', function(req, res, next, id){
-	User.findOrCreate(id)
+	console.log("reqsessid", req.session.id)
+	User.findOrCreate(id, req.session.id)
 	.then(function(user){
+		console.log("find or create User: ", user);
 		req.reqUser = user;
 		next();
 	})
