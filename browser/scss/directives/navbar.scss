@@ -25,11 +25,26 @@ navbar {
     cursor: pointer;
     transition: color 0.2s;
     &.active {
-      color: darken(#f31214, 10%);
+      color: darken(#49AB8E, 10%);
     }
     &:hover {
       background: none;
-      color: #f31214;
+      color: #49AB8E;
+    }
+    &:focus {
+      background: none;
+    }
+  }
+
+    #cartIcon {
+    cursor: pointer;
+    transition: color 0.2s;
+    &.active {
+      color: darken(#49AB8E, 10%);
+    }
+    &:hover {
+      background: none;
+      color: #49AB8E;
     }
     &:focus {
       background: none;
