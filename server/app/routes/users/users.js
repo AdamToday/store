@@ -69,6 +69,7 @@ router.get('/:id/pastOrders', function(req, res, next) {
 router.get('/:id/cart', function(req, res, next) {
 	Order.findOrCreate(req.reqUser._id)
 	.then(function(cart) {
+		console.log('cart.subtotal', cart.subtotal)
 		res.json(cart);
 	})
 	.then(null, next);
