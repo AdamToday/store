@@ -48,6 +48,11 @@ var schema = new Schema({
         type: Boolean,
         default: false
     },
+    userType: {
+        type: String,
+        enum: ["guest", "registered"],
+        default: "registered"
+    },
     contactInfo: [ContactInfoSchema],
     billingInfo: [BillingInfoSchema],
     password: {
@@ -99,11 +104,19 @@ schema.pre('save', function (next) {
 
 });
 
+
 schema.statics.findOrCreate = function (id, reqSessId) {
   var self = this;
   if (id == 1) {
     console.log('in findorcreate', reqSessId, "id:", id)
-    return self.create({sessionId: reqSessId})
+    return self.findOne({sessionId: reqSessId})
+    .then(function(guestUser) {
+        if (guestUser) {
+            return guestUser 
+        } else {
+            return self.create({sessionId: reqSessId, email: reqSessId, userType: "guest"});
+        }
+    })
     .then(function(newUser) {
         return newUser;
     });

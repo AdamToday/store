@@ -42,7 +42,7 @@
 		  <div class="thumbnail">
 		      <img alt="{{product.name}}" title="{{product.name}}" ng-src="{{product.picture}}">
 		      <div class="caption">
-		          <h4><a ui-sref="product({ productId: product._id })">{{ product.name }}</a>
+		          <h4><a ui-sref="product({ productId: product._id, userId: user })">{{ product.name }}</a>
 		          </h4>
 		          <h4>{{ product.price | currency:"$":2 }}</h4>
 		          <p>{{ product.description }}</p>

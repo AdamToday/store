@@ -4,14 +4,14 @@ app.config(function ($stateProvider) {
     templateUrl: '/js/common/directives/shopping-cart/shopping-cart.html',
     controller: 'CartCtrl',
     resolve: {
-      theUser: function($stateParams) {
-        var user;
-        if ($stateParams.userId) {
+      // theUser: function($stateParams) {
+      //   var user;
+      //   if ($stateParams.userId) {
 
-        } else {
+      //   } else {
 
-        }
-      },
+      //   }
+      // },
       currentCart: function(UserFactory, $stateParams) {
         return UserFactory.fetchCart($stateParams.userId);
       }
@@ -19,12 +19,12 @@ app.config(function ($stateProvider) {
   });
 });
 
-app.controller('CartCtrl', function($scope, theUser, currentCart, UserFactory) {
-    $scope.user = theUser;
+app.controller('CartCtrl', function($scope, currentCart, UserFactory) {
+    $scope.userId = currentCart.user;
     $scope.cart = currentCart;
     console.log('subtotal', $scope.cart.subtotal)
     $scope.deleteItem = function(product) {
-        UserFactory.deleteFromCart($scope.user._id, product._id)
+        UserFactory.deleteFromCart($scope.userId, product._id)
         .then(function(updatedCart) {
             $scope.cart = updatedCart;
         })

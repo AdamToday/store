@@ -2,7 +2,7 @@
 
 app.config(function ($stateProvider) {
     $stateProvider.state('products', {
-        url: '/products',
+        url: '/products/:userId',
         templateUrl: 'js/product/products.html',
         controller: 'ProductsCtrl',
 
@@ -14,6 +14,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('ProductsCtrl', function($scope, allProducts) {
+app.controller('ProductsCtrl', function($scope, allProducts, $stateParams) {
 	$scope.products = allProducts;
+    $scope.user = $stateParams.userId
 });
