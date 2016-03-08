@@ -18,14 +18,27 @@ var OrderSchema = new Schema({
     type: Date
   },
   status: { type: String, enum: ["inProgress", "complete"], default: "inProgress" }
+}, {
+  toObject: {
+      virtuals: true
+    },
+    toJSON: {
+      virtuals: true 
+    }
+
 });
 
 //adds deepPopulate option to populate a reference's reference!
 OrderSchema.plugin(deepPopulate);
 
-OrderSchema.virtual('subtotal').set(function() {
-  return items.reduce(function(acc, next){
-    return acc + next.price;
+OrderSchema.virtual('subtotal').get(function() {
+  var self = this;
+  var arr = [];
+  for (var i = 0; i < self.items.length; i++) {
+    arr.push(self.items[i].item.price * self.items[i].quantity)
+  }
+  return arr.reduce(function(acc, next){
+    return acc + next;
   }, 0);
 });
 

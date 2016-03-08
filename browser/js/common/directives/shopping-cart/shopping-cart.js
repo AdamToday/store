@@ -22,6 +22,7 @@ app.config(function ($stateProvider) {
 app.controller('CartCtrl', function($scope, currentCart, UserFactory) {
     $scope.userId = currentCart.user;
     $scope.cart = currentCart;
+    console.log('scope.cart', $scope.cart)
     console.log('subtotal', $scope.cart.subtotal)
     $scope.deleteItem = function(product) {
         UserFactory.deleteFromCart($scope.userId, product._id)
