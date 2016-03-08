@@ -4,7 +4,7 @@ app.config(function ($stateProvider) {
 	$stateProvider.state('productstoedit', {
 		url: '/products/edit',
 		templateUrl: 'js/product/productstoedit.html',
-		controller: 'ProductsToEditCtrl',
+		controller: 'ProductsCtrl',
 		resolve: {
 			allProducts: function(ProductFactory){
         		return ProductFactory.fetchAll();
@@ -13,8 +13,15 @@ app.config(function ($stateProvider) {
 	});
 });
 
-app.controller('ProductsToEditCtrl', function($scope, allProducts) {
-	$scope.products = allProducts;
-});
+// app.controller('ProductsToEditCtrl', function($scope, allProducts) {
+// 	$scope.products = allProducts;
+// });
 
 //  *****  EDIT SINGLE PRODUCT / FORM  *****
+
+app.config(function ($stateProvider) {
+	$stateProvider.state('editproduct', {
+		url: '/products/edit/:id',
+		templateUrl: 'js/product/editproduct.html'
+	});
+});
