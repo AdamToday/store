@@ -16,6 +16,7 @@ app.factory('UserFactory', function($http) {
 		.then(response => response.data);
 	}
 	UserFactory.fetchCart = function(userId) {
+		if (!userId) { userId = 1};
 		return $http.get('/api/users/' + userId + '/cart')
 		.then(response => response.data);
 	}
