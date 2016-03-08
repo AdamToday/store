@@ -14,10 +14,9 @@ app.controller('AddProductCtrl', function($scope, ProductFactory, $state, $state
    	$scope.types = ["Drinking", "Bar", "Assorted"];
    	$scope.sendNewProduct = function(newProduct){
    		ProductFactory.createNewProduct(newProduct).then(function(product){
-   			$scope.newProductId = product._id;
-        $state.go('product', {productId: $scope.newProductId});
-   		
-   		});
+     			$scope.newProductId = product._id;
+          $state.go('product', {productId: $scope.newProductId});
+   		 });
 
-       };
+    };
  });   	
