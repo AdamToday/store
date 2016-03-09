@@ -1,0 +1,12 @@
+  <h4>All Reviews</h4>
+  <div ng-show="reviews.length < 1"><i>There are no reviews</i></div>
+  <div ng-repeat="review in reviews" class="panel panel-default">
+      <div class="panel heading">
+        {{ review.product.name }} by {{ review.author.email }} on {{ review.date | date : 'mediumDate' }} | <span class="glyphicon glyphicon-heart" ng-repeat="num in getRating(review.rating)"></span><!-- 
+               --><span class="glyphicon glyphicon-heart-empty" ng-repeat="num in getRating(5-review.rating)"></span>
+      </div>
+      <div class="panel body">
+        <b>{{ review.title }}</b><br>
+        <i>"{{ review.comments }}"</i>
+      </div>
+  </div>
