@@ -14,6 +14,7 @@ var ReviewSchema = new Schema({
 
 ReviewSchema.statics.findByAuthor = function(authorId, cb){
 	return this.find({author: authorId})
+  .populate('product')
 	.then(function(reviewsByAuthor){
 		if (cb) cb(null, reviewsByAuthor);
 		return reviewsByAuthor;

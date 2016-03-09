@@ -60,7 +60,6 @@ router.get('/:id/orders', function(req, res, next) {
 // get one user's reviews
 router.get('/:id/reviews', function (req, res, next) {
 	Review.findByAuthor(req.reqUser._id)
-	.populate('product')
 	.then(function (reviews) {
 		res.json(reviews);
 	})

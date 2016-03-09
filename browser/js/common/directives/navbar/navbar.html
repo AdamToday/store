@@ -12,7 +12,7 @@
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <a href="#"><i ui-sref="shopping-cart({userId: user._id})" id="cartIcon" class="fa fa-shopping-cart"></i></a>
         <div ng-show="user" class="welcome">
-            <span>Welcome, <a href="#" alt="Click to view your account" ui-sref="user({id: user._id})">{{ user.email }}</a>!</span>
+            <span>Welcome, <a alt="Click to view your account" ui-sref="user({userId: user._id})">{{ user.email }}</a>!</span>
             <a ng-click="logout()">Logout</a>
         </div>
     </div>

@@ -7,11 +7,20 @@
   	<li>Name: {{ user.fullName }}</li>
   	<li>Contact info: <span>{{ user.contactInfo }}</span></li>
   </ul>
-  <h4>View order history</h4>
+  <h4>My order history</h4>
   <div ng-show="orders.length < 1"><i>You have no past orders</i></div>
   <div ng-repeat="order in orders">{{ order }} showing</div>
-  <h4>View my reviews</h4>
-  <div ng-repeat="review in reviews">{{ review }}</div>
+  <h4>My reviews</h4>
+  <div ng-repeat="review in reviews" class="panel panel-default">
+      <div class="panel heading">
+        {{ review.product.name }} on {{ review.date | date : 'mediumDate' }} | <span class="glyphicon glyphicon-heart" ng-repeat="num in getRating(review.rating)"></span><!-- 
+               --><span class="glyphicon glyphicon-heart-empty" ng-repeat="num in getRating(5-review.rating)"></span>
+      </div>
+      <div class="panel body">
+        <b>{{ review.title }}</b><br>
+        <i>"{{ review.comments }}"</i>
+      </div>
+  </div>
   <button ui-sref="user.edit" class="btn btn-default">Edit Account Info</button>
 
 </div>

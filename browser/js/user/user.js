@@ -38,6 +38,14 @@ app.controller('UserCtrl', function($scope, theUser, theReviews, thePastOrders) 
 	$scope.user = theUser;
 	$scope.orders = thePastOrders;
 	$scope.reviews = theReviews;
+
+	$scope.getRating = function (num) {
+    var arr = [];
+    for (var i = 0; i<num; i++) {
+      arr.push(i);
+    }
+    return arr;
+  };
 });
 
 app.config(function($stateProvider) {
