@@ -1,17 +1,17 @@
 <div class = "container ">
     <h2>Add your shipping address</h2>
-    <form name='check-out'>
+    <form name='check-out' >
     <div class="row">
         <fieldset class='form-group col-lg-4'>
             <label for="firstname"> First name: </label>
             <br>
-        	<input name="firstname" ng-model="firstname"class="form-control" type='text' placeholder="First name">
+        	<input name="firstname" ng-model=" firstname" required class="form-control" type='text' placeholder="First name">
         </fieldset>
 
         <fieldset class='form-group col-lg-4'>
             <label for="lastname"> Last name: </label>
             <br>
-            <input name="lastname" ng-model="lastname"class="form-control" type='text' placeholder="Last name">
+            <input name="lastname" ng-model="lastname"class="form-control" required type='text' placeholder="Last name">
         </fieldset>
      </div>
     <div class="row">
@@ -23,7 +23,7 @@
     <div class="row">
      <fieldset class='form-group col-lg-4'>
         <label for="address1">Address line 1: </label>
-        <input name="address1" class="form-control" type='text' ng-model="address1" placeholder="Stree adress, P.O. box, company name, c/o"> 
+        <input name="address1" class="form-control" type='text' ng-model="address1" required placeholder="Stree adress, P.O. box, company name, c/o"> 
     </fieldset>
      <fieldset class='form-group col-lg-4'>
         <label for="address2">Address line 2: </label>
@@ -34,22 +34,22 @@
     <div class="row">
     <fieldset class='form-group col-lg-4'>
         <label for="city">City: </label>
-        <input name="city" class="form-control" type='text' ng-model="city" placeholder="city name"> 
+        <input name="city" required class="form-control" type='text' ng-model="city" placeholder="city name"> 
     </fieldset>
 
     <fieldset class='form-group col-lg-4'>
         <label for="state">State/Province/Region: </label>
-        <input name="state" class="form-control" type='text' ng-model="state" placeholder="state/province/region"> 
+        <input name="state" class="form-control" type='text' ng-model="state" required placeholder="state/province/region"> 
     </fieldset>
     </div>
     <div class="row">
     <fieldset class='form-group col-lg-4'>
         <label for="zip">zip: </label>
-        <input name="zip" class="form-control" type='text' ng-model="zip" placeholder="zip code"> 
+        <input name="zip" class="form-control" type='text' ng-model="zip" placeholder="zip code" required> 
     </fieldset>
     <fieldset class="form-group col-lg-4">
         <label for="country">Country: </label>
-        <input class="form-control" id="country" ng-model="country">
+        <input class="form-control" id="country" ng-model="country" required>
     </fieldset>
     </div>
    
