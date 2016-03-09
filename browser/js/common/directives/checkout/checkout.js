@@ -32,7 +32,6 @@ app.controller('checkoutCtl', function($scope, theUser, UserFactory){
         
         return UserFactory.updateInfo(user._id, updateinfo)
         .then(function(updateinfo){
-            console.log("updateinfo: ", updateinfo);
             return updateinfo;
         });
     }

@@ -8,7 +8,6 @@ app.factory('OrderFactory', function($http) {
 		.then(response => response.data);
 	}
 	OrderFactory.fetchById = function(id) {
-		console.log("OrderFactory id: ", id);
 		return $http.get('/api/orders/' + id)
 		.then(response => response.data);
 	}

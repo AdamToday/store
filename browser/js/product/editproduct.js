@@ -35,7 +35,6 @@ app.config(function ($stateProvider) {
 
 app.controller('ProductToEditCtrl', function($scope, $stateParams, productToEdit, $state, ProductFactory) {
 	$scope.editproduct = productToEdit;
-	console.log("$scope.editproduct: ", $scope.editproduct);
 	$scope.types = ["Drinking", "Bar", "Assorted"];
 	$scope.editSingleProduct = function(editproduct) {
 		ProductFactory.updateProduct(editproduct)

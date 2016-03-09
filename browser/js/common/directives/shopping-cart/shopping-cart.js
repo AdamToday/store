@@ -22,8 +22,6 @@ app.config(function ($stateProvider) {
 app.controller('CartCtrl', function($scope, currentCart, UserFactory) {
     $scope.userId = currentCart.user;
     $scope.cart = currentCart;
-    console.log('scope.cart', $scope.cart)
-    console.log('subtotal', $scope.cart.subtotal)
     $scope.deleteItem = function(product) {
         UserFactory.deleteFromCart($scope.userId, product._id)
         .then(function(updatedCart) {
@@ -36,7 +34,6 @@ app.factory('CartFactory', function($http) {
   var CartFactory = {};
 
   CartFactory.fetchCart = function(userId) {
-    if (!userId) console.log("cart factory: no user id!");
     return $http.get('/api/users/' + userId + '/cart')
     .then(response => response.data);
   };
