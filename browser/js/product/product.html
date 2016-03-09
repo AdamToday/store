@@ -4,7 +4,7 @@
         <img class="img-responsive" src="{{ product.picture }}" alt="{{ product.name }}">
         <div class="caption-full">
             <h4 class="pull-right">{{ product.price | currency:"$":2 }}</h4>
-            <h4><a href="#">{{product.name}}</a>
+            <h4 class='productname'><a href="#">{{product.name}}</a>
             </h4>
             <p>{{ product.description }}</p>
             <p>Size: {{ product.size }} ounces</p>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="product add-to-cart">
 
-                <input type="submit" name="Add to Cart" value="Add to Cart" form="add-to-cart" ng-click='addToCart(newCartItem)' title="Add to Cart" class="product btn btn-primary">
+                <input type="submit" name="Add to Cart" value="Add to Cart" form="add-to-cart" ng-click='addToCart(newCartItem)' title="Add to Cart" class="product btn btn-default">
                 <div class="alert alert-success" ng-show="added">
                     <a href="#" class="close" ng-click="removeAdded()"><i class="fa fa-times"></i> </a>
                         {{ added }}
@@ -50,7 +50,7 @@
                     {{ error }}
             </div>
             
-            <button ng-click="addReview(product._id, user._id)" class="btn btn-success">Leave a Review</button>
+            <button ng-click="addReview(product._id, user._id)" class="btn btn-review">Leave a Review</button>
         </div>
 
         <hr>

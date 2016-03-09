@@ -19,24 +19,26 @@
 
 <div class="container">
 	<section id="products">
+		<div id='menu'>
+			<span>sort by: </span>
+			<select ng-model="sortorder" ng-init="sortorder='+name'">	
+			  <option value="+name">a-z</option>
+			  <option value="-name">z-a</option>
+			  <option value="+price">price: lowest to highest</option>
+			  <option value="-price">price: highest to lowest</option>
+			</select>
+		</div>
+		<div id='menu'>
+			<span>select by: </span>
+			<select ng-model="selectby">	
+			  <option value="Bar">Chocolate Bar</option>
+			  <option value="Drinking">Drinking Chocolate</option>
+			  <option value="Assorted">Assorted</option>
+			</select>
+		</div>
 
-		<span>sort by: </span>
-		<select ng-model="sortorder" ng-init="sortorder='+name'">	
-		  <option value="+name">a-z</option>
-		  <option value="-name">z-a</option>
-		  <option value="+price">price: lowest to highest</option>
-		  <option value="-price">price: highest to lowest</option>
-		</select>
-
-		<span>select by: </span>
-		<select ng-model="selectby">	
-		  <option value="Bar">Chocolate Bar</option>
-		  <option value="Drinking">Drinking Chocolate</option>
-		  <option value="Assorted">Assorted</option>
-		</select>
-
-		<h2>Products</h2>
-		<p>A selection of our finest chocolates.</p>
+		<h2 id='title'>Products</h2>
+		<p id='subtitle'>A selection of our finest chocolates.</p>
 		
 		<div ng-repeat="product in products | filter: {type:selectby} | orderBy: sortorder" class="col-sm-4 col-lg-4 col-md-4">	
 		  <div class="thumbnail">
@@ -44,8 +46,8 @@
 		      <div class="caption">
 		          <h4><a ui-sref="product({ productId: product._id, userId: user })">{{ product.name }}</a>
 		          </h4>
-		          <h4>{{ product.price | currency:"$":2 }}</h4>
-		          <p>{{ product.description }}</p>
+		          <h4 id='price'>{{ product.price | currency:"$":2 }}</h4>
+		          <p id='description'>{{ product.description }}</p>
 		      </div>
 		      <div class="view-item">
 		          <a ui-sref="product({ productId: product._id })"><button class="btn btn-default center">View item</button></a>

@@ -4,6 +4,20 @@
 
 body {
   background: #fdfdfd;
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  a {
+    color: #2E6B59;
+    cursor: pointer;
+    transition: color 0.2s;
+    &.active {
+      color: darken(#49AB8E, 10%);
+    }
+    &:hover {
+      background: none;
+      color: #49AB8E;
+    }
+  }
 }
 
 @mixin clearfix {
@@ -15,7 +29,7 @@ body {
 }
 
 #main {
-  padding-top: 60px;
+  padding-top: 40px;
   margin: 0 auto;
 }
 
@@ -27,6 +41,13 @@ body {
   float: right;
 }
 
+.btn-default {
+  background-color: #1C5749;
+  color: white;
+}
+
+
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
@@ -35,3 +56,5 @@ body {
 @import 'orders/orders';
 @import 'product/main';
 @import 'shopping-cart/shopping-cart';
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Fredericka+the+Great);
