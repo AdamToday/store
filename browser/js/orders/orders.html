@@ -3,8 +3,9 @@
   <section id="orders">
   	<h2>All Orders</h2>
   	<div ng-repeat="order in orders">
-    <a ui-sref="order({orderId: order._id})">{{ order.items }}</a>
-  		<h4>Order status: {{ order.status }}</h4>
+    <h3><a ui-sref="order({orderId: order._id})">Order No. {{ order._id }}</a></h3>
+  		<p>Date {{ order.date }}<p>
+      <p>Status: {{ order.status }}</p>
   	</div>
   </section>
 
