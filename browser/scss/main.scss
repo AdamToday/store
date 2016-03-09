@@ -23,6 +23,10 @@ body {
 	width: 200px;
 }
 
+.btn-google {
+  float: right;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
