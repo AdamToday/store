@@ -52,11 +52,39 @@ app.config(function($stateProvider) {
 	$stateProvider.state('user.edit', {
 		url: '/users/:userId/edit',
 		templateUrl: 'js/user/user-edit.html',
-		controller: 'UserCtrl',
+		controller: 'UserEditCtrl',
 		resolve: {
 			theUser: function(UserFactory, $stateParams) {
 				return UserFactory.fetchById($stateParams.userId);
 			}
 		}
 	});
+});
+
+app.controller('UserEditCtrl', function ($scope, theUser, UserFactory, $state) {
+    var updateinfo = {
+    	firstName: "",
+    	lastName: "",
+    	contactInfo: {}
+    };
+
+    $scope.updateUserInfo = function(){
+        updateinfo.firstName = $scope.firstName;
+        updateinfo.lastName = $scope.lastName;
+        updateinfo.contactInfo.phone = $scope.phone;
+        updateinfo.contactInfo.address1 = $scope.address1;
+        updateinfo.contactInfo.address2 = $scope.address2;
+        updateinfo.contactInfo.city = $scope.city;
+        updateinfo.contactInfo.state = $scope.state;
+        updateinfo.contactInfo.zip = $scope.zip;
+        updateinfo.contactInfo.country = $scope.country;
+        console.log("$scope: ", $scope);
+
+        return UserFactory.updateInfo(theUser._id, updateinfo)
+        .then(function(updateinfo){
+            console.log("updateinfo: ", updateinfo);
+            $state.go('user', { userId: theUser._id });
+            return updateinfo;
+        });
+    };
 });
