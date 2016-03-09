@@ -1,12 +1,32 @@
 #home {
   ydkc-logo {
-    padding-top: 30px;
-    width: 500px;
+    padding-top: 0px;
+    width: 400px;
     margin: 0 auto;
   }
   h1 {
     margin-top: 40px;
-    text-align: center;
   }
+  h4 {
+  	text-align: center;
+  	font-size: 40px;
+  	padding-top: 10px;
+		font-family: 'Amatic SC', cursive;  }
+	#cocoa {
+		width: 100%;
+	}
+	h3 {
+		text-align: center;
+		font-family: 'Amatic SC', cursive;
+		font-size: 30px;
+		font-weight: bold;
+	}
+	#contain {
+		padding-top: 20px;
+		padding-bottom: 10px;
+		background-color: #f9f2ec;
+
+	}
 }
 
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC:400,700);
