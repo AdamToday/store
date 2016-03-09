@@ -34,6 +34,7 @@ OrderSchema.plugin(deepPopulate);
 OrderSchema.virtual('subtotal').get(function() {
   var self = this;
   var arr = [];
+  console.log('self', self)
   for (var i = 0; i < self.items.length; i++) {
     arr.push(self.items[i].item.price * self.items[i].quantity)
   }
@@ -55,6 +56,7 @@ OrderSchema.statics.findByUser = function(userId, _status, cb){
 
 OrderSchema.statics.getPastOrder = function(userId, cb){
   return this.find({user: userId, status: "complete"})
+  .deepPopulate('user item items.item')
   .then(function(pastOrdersByUser){
     if (cb) cb(null, pastOrdersByUser);
     return pastOrdersByUser;
