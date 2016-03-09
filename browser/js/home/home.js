@@ -1,21 +1,15 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('home', {
         url: '/',
-        templateUrl: 'js/home/home.html',
-        controller: 'HomeCtrl',
-        resolve: {
-        	theUser: function(AuthService) {
-        		return AuthService.getLoggedInUser()
-        	}
-        }
+        templateUrl: 'js/home/home.html'
     });
 });
 
 
 
-app.controller('HomeCtrl', function($scope, theUser) {
+// app.controller('HomeCtrl', function($scope, theUser) {
 
-  $scope.user = theUser;
+//   $scope.user = theUser;
 
   // $scope.isLoggedIn = function () {
   //     return AuthService.isAuthenticated();
@@ -44,5 +38,5 @@ app.controller('HomeCtrl', function($scope, theUser) {
   // $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
   // $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
   // $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
-});
+// });
 

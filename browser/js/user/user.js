@@ -78,11 +78,11 @@ app.controller('UserEditCtrl', function ($scope, theUser, UserFactory, $state) {
         updateinfo.contactInfo.state = $scope.state;
         updateinfo.contactInfo.zip = $scope.zip;
         updateinfo.contactInfo.country = $scope.country;
-        console.log("$scope: ", $scope);
+        // console.log("$scope: ", $scope);
 
         return UserFactory.updateInfo(theUser._id, updateinfo)
         .then(function(updateinfo){
-            console.log("updateinfo: ", updateinfo);
+            // console.log("updateinfo: ", updateinfo);
             $state.go('user', { userId: theUser._id });
             return updateinfo;
         });
