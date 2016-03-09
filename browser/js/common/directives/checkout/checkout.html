@@ -53,6 +53,6 @@
     </fieldset>
     </div>
    
-    <button type="submit" class="btn btn-primary" ng-click="updateuserinfo()">Ship to this address</button>
+    <button type="submit" class="btn btn-primary" ng-disables="issaved"ng-click="updateuserinfo()" ng-model="buttontext">{{buttontext}}</button>
     </form>
 </div>

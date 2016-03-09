@@ -17,7 +17,8 @@ app.controller('checkoutCtl', function($scope, theUser, UserFactory){
     contactInfo:{}
     };
 
-   
+   $scope.issaved = false;
+   $scope.buttontext = "Ship to this address";
     $scope.updateuserinfo = function(){
 
         updateinfo.firstname = $scope.firstname;
@@ -32,7 +33,10 @@ app.controller('checkoutCtl', function($scope, theUser, UserFactory){
         
         return UserFactory.updateInfo(user._id, updateinfo)
         .then(function(updateinfo){
+            $scope.issaved = true;
+            $scope.buttontext = "Saved";
             return updateinfo;
+
         });
     }
 });
