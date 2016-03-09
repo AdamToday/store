@@ -10,7 +10,6 @@ app.config(function ($stateProvider) {
 app.factory('addReviewFactory', function($http){
     return {
         addNewReview: function(newreview){
-            console.log("I am going to post your review",newreview)
             return $http.post('/api/reviews', newreview)
             .then(function(review){
                 return review;
@@ -47,7 +46,6 @@ app.controller('addReviewCrl', function($scope, addReviewFactory, $state){
 
         return addReviewFactory.addNewReview(newreview)
         .then(function(){
-            console.log("thank you very much!");
             $state.go('product');
         })
         .then(null, function(err){

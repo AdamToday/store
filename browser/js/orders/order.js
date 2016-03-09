@@ -30,6 +30,5 @@ app.config(function($stateProvider) {
 
 app.controller('OrderCtrl', function($scope, theOrder) {
 	$scope.order = theOrder;
-		console.log("$scope.order", $scope.order.items);
 
 });
