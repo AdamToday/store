@@ -13,7 +13,7 @@
 }
 
 .caption {
-    height: 130px;
+    height: 9.4em;
     overflow: auto;
     h4 {
     white-space: nowrap;
@@ -23,6 +23,10 @@
 .view-item {
     padding: 10px;
     color: #d17581;
+}
+
+.productname {
+  font-size: 30px;
 }
 
 .thumbnail {
@@ -35,6 +39,12 @@
     padding: 9px;
     color: #333;
     }
+}
+
+.btn-review {
+  background-color: white;
+  color: #1C5749;
+  border-color: #1C5749;
 }
 
 .center {
@@ -61,4 +71,28 @@ footer {
 
 .img-responsive {
   width: 450px;
+}
+
+#title {
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 50px;
+}
+
+#subtitle {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+#description {
+  font-size: 13px;
+}
+
+#menu {
+  float: right;
+  padding-left: 10px;
+  padding-top: 20px;
+}
+
+#price {
+  font-size: 16px;
 }
