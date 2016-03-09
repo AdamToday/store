@@ -63,7 +63,7 @@ OrderSchema.statics.getPastOrder = function(userId, cb){
 
 OrderSchema.statics.getAllItems = function(orderId, cb){
   return this.findById(orderId)
-  .deepPopulate('item items.item')
+  .deepPopulate('user item items.item')
   .then(function(allItems){
     if (cb) cb(null, allItems);
     return allItems;
