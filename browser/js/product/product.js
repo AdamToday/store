@@ -36,6 +36,7 @@ app.controller('ProductCtrl', function($scope, oneProduct, UserFactory, $state, 
         $scope.loggedIn = true;
        }
     })
+    // console.log('$stateParams.userId', $stateParams.userId)
     $scope.addToCart = function(qty) {
         // if (!userId) {
         //     if (!$localStorage.cart) $localStorage.cart = [];
@@ -48,7 +49,10 @@ app.controller('ProductCtrl', function($scope, oneProduct, UserFactory, $state, 
         // } else {
             return UserFactory.fetchCart($stateParams.userId)
             .then(function(userCart) {
-                return $scope.userId = userCart.user;
+                var userid = userCart.user;
+                // console.log('userCart.user', userCart.user )
+                $scope.userId = userid;
+                return $scope.userId;
             })
             .then(function() {
                 var newItem = {item: $scope.product, quantity: qty}
