@@ -17,6 +17,7 @@ router.param('id', function(req, res, next, id){
 //get all orders
 router.get('/', function(req, res, next) {
 	Order.find(req.query)
+	.deepPopulate('user item items.item')
 	.then(function(orders){
 		res.json(orders);
 	})

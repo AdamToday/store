@@ -55,6 +55,7 @@ OrderSchema.statics.findByUser = function(userId, _status, cb){
 
 OrderSchema.statics.getPastOrder = function(userId, cb){
   return this.find({user: userId, status: "complete"})
+  .deepPopulate('user item items.item')
   .then(function(pastOrdersByUser){
     if (cb) cb(null, pastOrdersByUser);
     return pastOrdersByUser;
