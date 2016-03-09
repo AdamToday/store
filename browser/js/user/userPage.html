@@ -2,15 +2,27 @@
 <div class="container">
 
   <h2>Your Account</h2>
-  <ul>
-  	<li>Email: {{ user.email }}</li>
-  	<li>Name: {{ user.fullName }}</li>
-  	<li>Contact info: <span>{{ user.contactInfo }}</span></li>
+
+  <p><button ui-sref="user.edit" class="btn btn-default">Edit Account Info</button></p>
+
+  <p>Email: {{ user.email }}</p>
+  <p>Name: {{ user.fullName }}</p>
+  <p>Contact info:
+  <span ng-show="user.contactInfo.length < 1"><i>You have no contact info</i></span>
+    <ul ng-show="!user.contactInfo.length < 1">
+      <li ng-repeat="address in user.contactInfo">
+        {{ address }}
+      </li>
   </ul>
-  <h4>My order history</h4>
+  <br>
+  
+  <h4>Your Past Orders</h4>
   <div ng-show="orders.length < 1"><i>You have no past orders</i></div>
   <div ng-repeat="order in orders">{{ order }} showing</div>
-  <h4>My reviews</h4>
+  <br>
+  
+  <h4>Your Reviews</h4>
+  <div ng-show="reviews.length < 1"><i>You have no reviews</i></div>
   <div ng-repeat="review in reviews" class="panel panel-default">
       <div class="panel heading">
         {{ review.product.name }} on {{ review.date | date : 'mediumDate' }} | <span class="glyphicon glyphicon-heart" ng-repeat="num in getRating(review.rating)"></span><!-- 
@@ -21,7 +33,6 @@
         <i>"{{ review.comments }}"</i>
       </div>
   </div>
-  <button ui-sref="user.edit" class="btn btn-default">Edit Account Info</button>
-
+  
 </div>
 </ui-view>

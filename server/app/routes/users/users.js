@@ -77,6 +77,8 @@ router.get('/:id/pastOrders', function(req, res, next) {
 
 //view current (inProgress) order; if there isn't one, create a new order
 router.get('/:id/cart', function(req, res, next) {
+	console.log("hit /api/users/:id/cart!");
+	console.log(":id ", req.params.id);
 	Order.findOrCreate(req.reqUser._id)
 	.then(function(cart) {
 		console.log('cart.subtotal', cart.subtotal)

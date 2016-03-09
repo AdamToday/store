@@ -93,6 +93,10 @@ var encryptPassword = function (plainText, salt) {
     return hash.digest('hex');
 };
 
+schema.virtual('fullName').get(function () {
+    return this.firstName + " " + this.lastName;
+});
+
 schema.pre('save', function (next) {
 
     if (this.isModified('password')) {
@@ -121,7 +125,8 @@ schema.statics.findOrCreate = function (id, reqSessId) {
         return newUser;
     });
   } else {
-      return this.findById(id).exec()
+      return this.findById(id)
+      .exec()
       .then(function(foundUser) {
         return foundUser;
       });

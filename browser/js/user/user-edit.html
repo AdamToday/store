@@ -2,44 +2,35 @@
 
 <h1>Edit Page</h1>
 
-<!--   <h2>Your Account</h2>
-  <ul>
-    <li>Email: {{ user.email }}</li>
-    <li>Name: {{ user.fullName }}</li>
-    <li>Contact info: {{user.contactInfo}}</li>
-  </ul>
-  <h4 href='#'>View order history</h4>
-  <ui-view></ui-view>
-  <h4 href='#'>View my reviews</h4>
-  <ui-view></ui-view>
-  <button class="btn btn-default">Edit Account Info</button>
- -->
+  <label for="first-name">First Name: </label>
+  <input name="firstName" class="inline-form" type='text' ng-model="user.firstName" value="{{ user.firstName }}"><br>
 
-        <h4>{{ review.title }}</h4>
+  <label for="last-name">Last Name: </label>
+  <input name="lastName" class="inline-form" type='text' ng-model="user.lastName" value="{{ user.lastName }}"><br>
 
-        {{ review.author.email }}
-        <span class="pull-right">{{ review.date | date : 'mediumDate' }}</span>
-        <p>{{ review.comments }}</p>
-
-
-<fieldset class='inline-form'>
   <label for="author-name">Email: </label>
-  <input name="email" ng-model="user.email" class="form-control" type='text' value="{{ user.email }}">
-</fieldset>
- <fieldset class='inline-form'>
-    <label for="review-title">Name: </label>
-    <input name="title" class="form-control" type='text' ng-model="user.name" value="{{ user.name }}"> 
-</fieldset>
-<!-- <fieldset class="form-group"> -->
-    <label for="exampleTextarea">Contact Info: </label>
-    <input name="address1" class="form-inline" type='text' ng-model="user.contactInfo.address1" value="{{ user.contactInfo.address1 }}"> 
-    <input name="address2" class="form-inline" type='text' ng-model="user.contactInfo.address2" value="{{ user.contactInfo.address2 }}"> 
-    <input name="city" class="form-inline" type='text' ng-model="user.contactInfo.city" value="{{ user.contactInfo.city }}"> 
-    <input name="state" class="form-inline" type='text' ng-model="user.contactInfo.state" value="{{ user.contactInfo.state }}"> 
-    <input name="zip" class="form-inline" type='text' ng-model="user.contactInfo.zip" value="{{ user.contactInfo.zip }}"> 
-    <input name="country" class="form-inline" type='text' ng-model="user.contactInfo.country" value="{{ user.contactInfo.country }}"> 
-<!-- </fieldset> -->
+  <input name="email" ng-model="user.email" class="inline-form" type='text' value="{{ user.email }}"><br>
+
+  <h3>Shipping Address: </h3>
+  <label for="address1">Street 1: </label>
+  <input name="address1" class="form-inline" type='text' ng-model="user.contactInfo.address1" value="{{ user.contactInfo.address1 }}"><br>
+  
+  <label for="address2">Street 2: </label>
+  <input name="address2" class="form-inline" type='text' ng-model="user.contactInfo.address2" value="{{ user.contactInfo.address2 }}"><br>
+  
+  <label for="City">City: </label>
+  <input name="city" class="form-inline" type='text' ng-model="user.contactInfo.city" value="{{ user.contactInfo.city }}"><br>
+
+  <label for="State">State: </label>
+  <input name="state" class="form-inline" type='text' ng-model="user.contactInfo.state" value="{{ user.contactInfo.state }}"><br>
+  
+  <label for="Zipcode">Zipcode: </label>
+  <input name="zip" class="form-inline" type='text' ng-model="user.contactInfo.zip" value="{{ user.contactInfo.zip }}"><br> 
+  
+  <label for="Country">Country: </label>
+  <input name="country" class="form-inline" type='text' ng-model="user.contactInfo.country" value="{{ user.contactInfo.country }}"><br> 
+
     
-    <button type="submit" class="btn btn-primary" ng-click="addreview()">Submit</button>
+    <button type="submit" class="btn btn-primary" ng-click="updateUserInfo()">Submit</button>
 
 </div>
